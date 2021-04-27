@@ -14,9 +14,6 @@ class Admins::ShiftsController < ApplicationController
     end
   end
   
-  def start_time
-    self.shift_model.start 
-  end
 
   private
   def shift_params
