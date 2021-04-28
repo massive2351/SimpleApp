@@ -1,7 +1,7 @@
 
 <div class="container">
  <div class="row">
-   <div class="col-md-8">
+   <div class="col-md-12">
       <% if flash[:notice] %>
           <%= flash[:notice] %>
       <% end %>
@@ -10,56 +10,16 @@
         <%= date.day %>
         <% shifts.each do |shift| %>
           <div>
-            <%= shift.start_time.hour %>：<%= shift.start_time.min %>
-            <%= shift.type %>
+            <%= link_to admins_shift_path(shift), class: "text-dark" do %>
+              <%= shift.start_time.hour %>：<%= shift.start_time.min %>
+              <%= shift.type %>
+            <% end %>
           </div>
         <% end %>
-
       <% end %>
-
-      <% @shifts.each do |shift| %>
-          <div>
-            <%= shift.start_time.hour %>：<%= shift.start_time.min %>
-            <%= shift.type %>
-          </div>
-      <% end %>
-
-
-
+      <%= link_to "シフトを追加する", new_admins_shift_path, class:"btn btn-primary" %>
 
    </div>
-   <div class="col-md-4">
-    <h5>シフト入力</h5>
-    <%= form_with(model: @shift, local: true, url: admins_shifts_path, method: :post) do |f| %>
-      <div class="form-group">
-       <%= f.label :日付 %>
-       <%= f.date_field :date, class: 'form-control bootstrap-date-only-width' %>
-      </div>
 
-      <div class="form-group">
-       <%= f.label :開始時刻 %>
-       <%= f.time_select :start_time, {}, class: 'form-control bootstrap-date-only-width' %>
-      </div>
-
-      <div class="form-group">
-       <%= f.label :終了時刻 %>
-       <%= f.time_select :end_time, {}, class: 'form-control bootstrap-date-only-width' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :仕事内容 %>
-        <%= f.select :type, options_for_select(Shift.types.keys), {},class: 'form-control bootstrap-date-only-width' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :介護種類 %>
-        <%= f.select :work, options_for_select(Shift.works.keys), {},class: 'form-control bootstrap-date-only-width' %>
-      </div>
-
-      <%= f.submit"入力" %>
-
-   <% end %>
-
-   </div>
  </div>
 </div>

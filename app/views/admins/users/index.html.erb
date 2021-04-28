@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row mx-auto">
+    <p class="h4 mt-4 mb-5">スタッフ一覧</p>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+      <table class="table table-hover">
+        <thead>
+          <tr class="bg-light">
+            <th>スタッフID</th>
+            <th>名前</th>
+            <th>メールアドレス</th>
+            <th>電話番号</th>
+            <th>詳細</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= user.last_name %> <%= user.first_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.telephone_number %></td>
+              <td>
+                <%= link_to "詳細", new_admins_shift_path, class:"btn btn-primary" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
