@@ -6,6 +6,7 @@ class Admins::ShiftsController < ApplicationController
   
   def new
     @shift = Shift.new
+    @users =  User.select(:first_name)
   end
 
   def create
@@ -39,7 +40,7 @@ class Admins::ShiftsController < ApplicationController
 
   private
   def shift_params
-    params.require(:shift).permit(:start_time, :end_time, :type, :work)
+    params.require(:shift).permit(:user_id, :start_time, :end_time, :type, :work)
   end
 
 end
