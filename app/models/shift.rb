@@ -1,5 +1,5 @@
 class Shift < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
 
   self.inheritance_column = :_type_disabled
 

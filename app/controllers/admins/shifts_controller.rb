@@ -6,11 +6,12 @@ class Admins::ShiftsController < ApplicationController
   
   def new
     @shift = Shift.new
-    @users =  User.select(:last_name)
+    @users =  User.all
   end
 
   def create
     @shift = Shift.new(shift_params)
+    @shift.staff = User.find(params[:shift][:user_id]).first_name
     if @shift.save!
       flash[:notice] = "シフトを追加しました"
       redirect_to admins_root_path
@@ -19,11 +20,13 @@ class Admins::ShiftsController < ApplicationController
     end
   end
   
+  
   def show
     @shift = Shift.find(params[:id])
   end
   
   def edit
+    @users =  User.select(:last_name)
     @shift = Shift.find(params[:id])
   end
   
@@ -40,7 +43,7 @@ class Admins::ShiftsController < ApplicationController
 
   private
   def shift_params
-    params.require(:shift).permit(:user_id, :start_time, :end_time, :type, :work)
+    params.require(:shift).permit(:start_time, :end_time, :type, :work, :staff, :user_id)
   end
 
 end

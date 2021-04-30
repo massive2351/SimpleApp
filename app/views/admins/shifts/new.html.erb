@@ -5,8 +5,7 @@
       <%= form_with(model: @shift, local: true, url: admins_shifts_path, method: :post) do |f| %>
         <div class="form-group">
          <%= f.label :スタッフ %>
-         <%= select_tag "user_id", options_from_collection_for_select(@users, :id, :last_name), prompt: "", class: 'selectpicker form-control bootstrap-date-only-width' %>
-
+         <%= f.collection_select :user_id, @users, :id, :last_name, {include_blank: true}, class: 'selectpicker form-control bootstrap-date-only-width'  %>
         </div>
 
         <div class="form-group">
