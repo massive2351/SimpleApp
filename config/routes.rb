@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     root :to => 'shifts#index'
     resources :shifts, only: [:new, :create, :edit, :update, :show]
     resources :users, only: [:index, :edit, :update, :show]
+    resources :customers
 
   end
 

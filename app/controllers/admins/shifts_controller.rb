@@ -26,12 +26,14 @@ class Admins::ShiftsController < ApplicationController
   end
   
   def edit
-    @users =  User.select(:last_name)
+    @users =  User.all
+    
     @shift = Shift.find(params[:id])
   end
   
   def update
     @shift = Shift.find(params[:id])
+    @shift.staff = User.find(params[:shift][:user_id]).first_name
     if @shift.update(shift_params)
       redirect_to admins_root_path
       flash[:notice] = "シフトを更新しました"
