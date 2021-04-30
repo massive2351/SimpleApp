@@ -6,7 +6,7 @@ class Admins::ShiftsController < ApplicationController
   
   def new
     @shift = Shift.new
-    @users =  User.select(:first_name)
+    @users =  User.select(:last_name)
   end
 
   def create

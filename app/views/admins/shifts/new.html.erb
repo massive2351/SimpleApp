@@ -3,35 +3,32 @@
     <div class="col-md-6">
       <h5>シフト入力</h5>
       <%= form_with(model: @shift, local: true, url: admins_shifts_path, method: :post) do |f| %>
-      
         <div class="form-group">
-          <% @users.each do |user| %>
-            <%= user.first_name %>
-          <% end %>
          <%= f.label :スタッフ %>
-         <%= f.datetime_field :start_time, class: 'form-control bootstrap-date-only-width' %>
+         <%= select_tag "user_id", options_from_collection_for_select(@users, :id, :last_name), prompt: "", class: 'selectpicker form-control bootstrap-date-only-width' %>
+
         </div>
-      
+
         <div class="form-group">
          <%= f.label :開始時刻 %>
          <%= f.datetime_field :start_time, class: 'form-control bootstrap-date-only-width' %>
         </div>
-  
+
         <div class="form-group">
          <%= f.label :終了時刻 %>
          <%= f.datetime_field :end_time, class: 'form-control bootstrap-date-only-width' %>
         </div>
-  
+
         <div class="form-group">
           <%= f.label :仕事内容 %>
           <%= f.select :type, options_for_select(Shift.types.keys), {},class: 'form-control bootstrap-date-only-width' %>
         </div>
-  
+
         <div class="form-group">
           <%= f.label :介護種類 %>
           <%= f.select :work, options_for_select(Shift.works.keys), {},class: 'form-control bootstrap-date-only-width' %>
         </div>
-  
+
         <div class="d-flex justify-content-center">
           <%= f.submit "入力", class:"btn btn-primary" %>
         </div>
