@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Londrina+Shadow" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic" rel="stylesheet">
+  </head>
+
+  <body>
+    <header class="shadow-sm" style="background: #FFFFCC;">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <%= link_to root_path do %>
+            <%= image_tag "logo.png", size: '80x80' %>
+          <% end %>
+          <div class="collapse navbar-collapse" id="navbarNavDropDown">
+            <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to 'スケジュール', admins_root_path, class: "nav-link text-dark tab rounded-pill" %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to '共通連絡', admins_root_path, class: "nav-link text-dark tab rounded-pill" %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to 'スタッフ', admins_users_path, class: "nav-link text-dark tab rounded-pill" %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to '利用者', admins_customers_path, class: "nav-link text-dark tab rounded-pill" %>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link text-dark tab rounded-pill" %>
+                </li>
+
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to 'ログイン', new_admin_session_path, class: "nav-link text-dark tab rounded-pill" %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <%= yield %>
+    <footer class="footer h4 text-center" style="height: 80px; line-height: 80px;">Simple</footer>
+  </body>
+</html>

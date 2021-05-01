@@ -1,5 +1,7 @@
 class Admins::CustomersController < ApplicationController
   
+  layout 'admins'
+  
   def new
     @customer = Customer.new
   end
