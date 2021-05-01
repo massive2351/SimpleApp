@@ -3,6 +3,8 @@ class Admins::ShiftsController < ApplicationController
   
   def index
     @shifts = Shift.all
+    @shift = Shift.where("start_time >= ?", Date.today)
+    @users = User.all
   end
   
   def new

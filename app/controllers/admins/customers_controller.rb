@@ -22,6 +22,7 @@ class Admins::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @shifts = @customer.shifts
   end
   
   def edit

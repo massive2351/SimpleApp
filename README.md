@@ -1,27 +1,23 @@
-# <Simple>
+# サイトのタイトル
+Simple
 
 ## サイト概要
-<このサイトは、訪問介護の事業所の業務を軽減し、サービスの質を向上させるための訪問介護ツールです。>
+このサイトは、訪問介護の事業所の情報共有の効率化やスタッフのシフトをPCで管理し、責任者の業務を軽減させるための訪問介護業務ツールです。
 
 ### サイトテーマ
-<訪問介護ツール>
+事業者と従業員の連絡を一本化できる訪問介護業務ツール
 
 ### テーマを選んだ理由
-< DMM WEBCAMPに受講する以前に訪問介護でアルバイトをしていました。そんな中、業務連絡やシフト管理などがアナログのため、共有漏れや伝達に時間がかかっていました。これらを改善するために作られました>
+DMM WEBCAMPに受講する以前に訪問介護でアルバイトをしていました。そんな中、業務連絡やシフト管理などがアナログのため、共有漏れや伝達に時間がかかっていました。これらを改善するために、このアプリ開発しようと思いました。
 
 ### ターゲットユーザ
-<訪問介護の事業所>
+訪問介護の事業所の責任者と従業員
 
 ### 主な利用シーン
-<スタッフのシフト管理や連絡事項の共有、訪問した時の利用者の様子>
+スタッフのシフト管理や連絡事項の共有、訪問した時の利用者の様子
 
-## 設計書
-<アプリケーション詳細設計 https://app.diagrams.net/#G1SNTbMwWdOrDfhNuNKg1MkVZOby3wwD1->
-<テーブル定義書 https://docs.google.com/spreadsheets/d/1NIZ327OjH5rtin12R3M-zdQphRE143WZxcFnt8Knxm4/edit#gid=1475442141>
-<フレームワーク https://app.diagrams.net/#G10FrUUtbBQ6LiHP-sKS49O3M7yALwR5by>
-
-## チャレンジ要素一覧
-<https://docs.google.com/spreadsheets/d/13GGlS94tXggVMgZLqKnkUveZWxcWegf6TQOrBaV5i9I/edit#gid=0>
+## 機能一覧
+https://docs.google.com/spreadsheets/d/13GGlS94tXggVMgZLqKnkUveZWxcWegf6TQOrBaV5i9I/edit#gid=0
 
 ## 開発環境
 - OS：Linux(CentOS)
