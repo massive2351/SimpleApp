@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="row mx-auto">
-    <p class="h4 mt-4 mb-5">利用者詳細</p>
-  </div>
    <% if flash[:notice] %>
     <%= flash[:notice] %>
    <% end %>
+  <div class="row mx-auto">
+    <p class="h4 mt-4 mb-5">利用者詳細</p>
+  </div>
   <div class="row">
     <div class="col-md-3">
       <%= attachment_image_tag @customer, :image, size: "175x175", fallback: 'no_image.jpg', class: "rounded-circle" %>

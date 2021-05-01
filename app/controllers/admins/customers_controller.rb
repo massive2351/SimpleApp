@@ -21,6 +21,20 @@ class Admins::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
   end
+  
+  def edit
+    @customer = Customer.find(params[:id])
+  end
+  
+  def update
+    @customer = Customer.find(params[:id])
+    if @customer.update(customer_params)
+      redirect_to admins_customer_path(@customer)
+      flash[:notice] = "利用者情報を更新しました"
+    else
+      render :show
+    end
+  end
 
   def destroy
   end
