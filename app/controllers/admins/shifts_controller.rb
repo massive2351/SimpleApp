@@ -1,12 +1,12 @@
 class Admins::ShiftsController < ApplicationController
   layout 'admins'
-  
+
   def index
     @shifts = Shift.all
-    @shift = Shift.where("start_time >= ?", Date.today)
+    @shift_today = Shift.where("DATE(start_time) = '#{Date.today}'")
     @users = User.all
   end
-  
+
   def new
     @shift = Shift.new
     @users =  User.all
@@ -24,18 +24,18 @@ class Admins::ShiftsController < ApplicationController
       render :index
     end
   end
-  
-  
+
+
   def show
     @shift = Shift.find(params[:id])
   end
-  
+
   def edit
     @users =  User.all
     @customers = Customer.all
     @shift = Shift.find(params[:id])
   end
-  
+
   def update
     @shift = Shift.find(params[:id])
     @shift.staff = User.find(params[:shift][:user_id]).last_name
@@ -47,7 +47,9 @@ class Admins::ShiftsController < ApplicationController
       render :index
     end
   end
-  
+
+  def search
+  end
 
   private
   def shift_params
