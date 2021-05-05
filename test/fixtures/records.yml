@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shift_id: 1
+  face: 1
+  sewat: 1
+  body_temperature: MyString
+  excretion_care: 1
+  urinate: MyString
+  evacuate: MyString
+  meal_care: MyString
+  bath_care: 1
+  move_care: 1
+  clean_care: 1
+  cooking_care: MyString
+  buy_care: MyString
+  content: MyText
+
+two:
+  shift_id: 1
+  face: 1
+  sewat: 1
+  body_temperature: MyString
+  excretion_care: 1
+  urinate: MyString
+  evacuate: MyString
+  meal_care: MyString
+  bath_care: 1
+  move_care: 1
+  clean_care: 1
+  cooking_care: MyString
+  buy_care: MyString
+  content: MyText

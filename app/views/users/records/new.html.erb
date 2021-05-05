@@ -1,0 +1,203 @@
+<div class="container">
+ <h2>サービス記録票</h2>
+ <div class="border border-dark rounded mt-5">
+ <%= form_with(model: @record, local: true, url: admins_shifts_path, method: :post) do |f| %>
+
+  <div class="row">
+   <div class="col-md-3">
+    <table class="table table-hover">
+     <th class="bg-light">お名前</th>
+     <td><%= @shift.customer_na %></td>
+    </table>
+   </div>
+   <div class="col-md-3">
+    <table class="table table-hover">
+     <th class="bg-light">担当ヘルパー</th>
+     <td><%= @shift.staff %></td>
+    </table>
+   </div>
+
+   <div class="col-md-3">
+   </div>
+
+   <div class="col-md-3 pull-right mt-3">
+    <%= link_to "サービスを記録する", new_record_path, class:"btn btn-primary" %>
+   </div>
+  </div>
+
+  <div class="row">
+   <div class="col-md-6">
+    <table class="table table-hover">
+     <th class="bg-light">実施日</th>
+     <td><%= @shift.start_time.to_date %></td>
+    </table>
+   </div>
+   <div class="col-md-6">
+    <table class="table table-hover">
+     <th class="bg-light">時間</th>
+     <td>
+      <%= @shift.start_time.hour %>：<%= @shift.start_time.min %>〜<%= @shift.end_time.hour %>：<%= @shift.end_time.min %>
+     </td>
+    </table>
+   </div>
+  </div>
+
+  <div class="row">
+   <div class="col-md-6">
+    <table class="table table-hover">
+     <th class="bg-light">サービスの種類</th>
+     <td><%= @shift.type %></td>
+     <td><%= @min.floor %>分</td>
+     <td></td>
+    </table>
+   </div>
+  </div>
+
+  <div class="row">
+   <div class="col-md-3">
+    <table class="table table-hover">
+     <th class="bg-light">事前チェック</th>
+    </table>
+   </div>
+   <div class="col-md-3">
+    <table class="table table-hover">
+     <th class="bg-light">顔色</th>
+     <td>
+        <%= f.label :face, :良 %>
+        <%= f.radio_button :face, 0 %>
+      </td>
+      <td>
+        <%= f.label :face, :不良 %>
+        <%= f.radio_button :face, 1 %>
+      </td>
+    </table>
+   </div>
+   <div class="col-md-3">
+    <table class="table table-hover">
+     <th class="bg-light">発汗</th>
+     <td>
+        <%= f.label :sweat, :有 %>
+        <%= f.radio_button :sweat, 0 %>
+      </td>
+      <td>
+        <%= f.label :sweat, :無 %>
+        <%= f.radio_button :sweat, 1 %>
+      </td>
+    </table>
+   </div>
+   <div class="col-md-3">
+    <table class="table table-hover">
+     <th class="bg-light">体温</th>
+     <td><%= f.text_field :body_temperature, class: 'form-control ' %>℃</td>
+    </table>
+   </div>
+  </div>
+  
+  <div class="row">
+   <div class="col-md-6">
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">身体介護</th>
+     </tr>
+    </table>
+   </div>
+   <div class="col-md-6">
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">生活介護</th>
+     </tr>
+    </table>
+   </div>
+  </div>
+  
+
+  <div class="row">
+   <div class="col-md-6">
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">排泄介助</th>
+      <td><%= check_box "excretion_care", "トイレ介助" %>トイレ介助</td>
+      <td><%= check_box "excretion_care", "オムツ交換" %>オムツ交換</td>
+      <td><%= check_box "excretion_care", "パッド交換" %>パッド交換</td>
+      <td><%= check_box "excretion_care", "陰部清潔" %>陰部清潔</td>
+      <td><%= check_box "excretion_care", "尿器洗浄" %>尿器洗浄</td>
+     </tr>
+    </table>
+
+    <table class="table table-hover">
+     <tr>
+       <td>排尿:<%= f.text_field :urinate, class: 'form-control bootstrap-date-only-width' %>cc</td>
+       <td>排便：<%= f.text_field :evacuate, class: 'form-control bootstrap-date-only-width' %></td>
+     </tr>
+    </table>
+
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">食事介助</th>
+      <td>食事量：<%= f.number_field :meal_care, class: 'form-control bootstrap-date-only-width' %>/10</td>
+     </tr>
+    </table>
+
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">清拭入浴</th>
+      <td>
+        <%= f.label :bath_care, :清拭 %>
+        <%= f.radio_button :bath_care, 0 %>
+      </td>
+      <td>
+        <%= f.label :bath_care, :全身浴 %>
+        <%= f.radio_button :bath_care, 1 %>
+      </td>
+     </tr>
+    </table>
+
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">移動介助</th>
+      <td><%= check_box "move_care", "移乗介助" %>移乗介助</td>
+      <td><%= check_box "move_care", "移動介助" %>移動介助</td>
+      <td><%= check_box "move_care", "通院介助" %>通院介助</td>
+      <td><%= check_box "move_care", "買い物介助" %>買い物介助</td>
+     </tr>
+    </table>
+   </div>
+
+   <div class="col-md-6">
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">清掃</th>
+      <td><%= check_box "clean_care", "居室" %>居室</td>
+      <td><%= check_box "clean_care", "トイレ" %>トイレ</td>
+      <td><%= check_box "clean_care", "浴室" %>浴室</td>
+      <td><%= check_box "clean_care", "寝室" %>寝室</td>
+     </tr>
+    </table>
+
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">調理</th>
+      <td><%= f.text_field :cooking_care, class: 'form-control' %></td>
+     </tr>
+    </table>
+
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">買い物</th>
+      <td><%= f.text_field :buy_care, class: 'form-control' %></td>
+     </tr>
+    </table>
+
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">記録</th>
+      <td><%= f.text_area :content, rows: 5, class: 'form-control' %></td>
+     </tr>
+    </table>
+
+   </div>
+
+  </div>
+ <% end %>
+ </div>
+</div>

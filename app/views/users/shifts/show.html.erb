@@ -12,7 +12,7 @@
        </tr>
        <tr>
          <th>利用者</th>
-         <td><%= @shift.customer_na %></td>
+         <td><%= link_to @shift.customer_na, customer_path(@shift.customer_id) %></td>
        </tr>
        <tr>
          <th>開始時刻</th>
@@ -31,10 +31,9 @@
          <td><%= @shift.work %></td>
        </tr>
      </table>
-     <div class="d-flex justify-content-center">
-          <%= link_to "編集する", edit_admins_shift_path(@shift), class:"btn btn-primary" %>
-      </div>
    </div>
-
+ </div>
+ <div class="d-flex justify-content-center">
+  <%= link_to "サービスを記録する", new_record_path(@shift), class:"btn btn-primary" %>
  </div>
 </div>
