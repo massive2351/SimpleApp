@@ -51,9 +51,6 @@ class Admins::ShiftsController < ApplicationController
   def search
   end
 
-  private
-  def shift_params
-    params.require(:shift).permit(:start_time, :end_time, :type, :work, :staff, :user_id, :customer_id, :customer_na)
-  end
+  
 
 end
