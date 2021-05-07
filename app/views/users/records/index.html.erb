@@ -1,0 +1,50 @@
+<div class="container">
+  <h3 class="my-5">本日の記録</h3>
+  <div class="row">
+   <% @record_todays.each do |record| %>
+   <div class="col md-12">
+    <%= link_to record_path(record), class: 'no-underline' do %>
+       <div class="card" style="max-width: 15rem;">
+         <%= attachment_image_tag record.shift.customer, :image, size: "125x125", fallback: "no_image.jpg", class: "card-img-top" %>
+         <div class="card-body">
+           <h4 class="card-title"><%= record.shift.start_time.hour %>：<%= record.shift.start_time.min %>〜<%= record.shift.end_time.hour %>：<%= record.shift.end_time.min %></h4>
+           <h6 class="card-subtitle"><%= record.shift.customer_na %></h6>
+           <p class="card-text"><%= record.shift.type %>を<%= ((record.shift.end_time-record.shift.start_time)/60).floor %>分しました。</p>
+         </div>
+       </div>
+    <% end %>
+   </div>
+   <% end %>
+  </div>
+  <div class="row mt-5">
+   <h3 class="my-5">記録一覧</h3>
+   <div class="col-md-12">
+    <table class="table table-bordered table-hover ">
+     <thead>
+       <tr>
+        <th>実施日</th>
+        <th>利用者</th>
+        <th>開始時刻</th>
+        <th>終了時刻</th>
+        <th>仕事内容</th>
+        <th>介護の種類</th>
+        <th></th>
+       </tr>
+     </thead>
+     <tbody>
+      <% @records.each do |record| %>
+       <tr>
+         <td><%= record.shift.start_time.to_date %></td>
+         <td><%= record.shift.customer_na %></td>
+         <td><%= record.shift.start_time.hour %>：<%= record.shift.start_time.min %></td>
+         <td><%= record.shift.end_time.hour %>：<%= record.shift.end_time.min %></td>
+         <td><%= record.shift.type %></td>
+         <td><%= record.shift.work %></td>
+         <td><%= link_to "詳細", record_path(record), class: "btn btn-outline-secondary" %></td>
+       </tr>
+      <% end %>
+     </tbody>
+    </table>
+    </div>
+  </div>
+</div>

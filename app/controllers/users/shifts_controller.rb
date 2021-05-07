@@ -1,4 +1,5 @@
 class Users::ShiftsController < ApplicationController
+  layout 'users'
   
   def top
     @shifts = Shift.all
@@ -6,12 +7,18 @@ class Users::ShiftsController < ApplicationController
   end
   
   def index
-    @shifts = Shift.includes(:user)
+    @shifts = Shift.all
+    @shift_today = Shift.where("DATE(start_time) = '#{Date.today}'")
+    @users = User.all
   end
   
   def show
     @shift = Shift.find(params[:id])
     @shifts = Shift.all
+  end
+  
+  def about
+    @shifts = Shift.includes(:user)
   end
   
   private

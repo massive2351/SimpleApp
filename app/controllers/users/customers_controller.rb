@@ -1,4 +1,5 @@
 class Users::CustomersController < ApplicationController
+   layout 'users'
   def index
     @customers = Customer.all
   end

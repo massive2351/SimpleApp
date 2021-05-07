@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :shifts, dependent: :destroy
+  has_many :records, dependent: :destroy
   
   attachment :image
   # Include default devise modules. Others available are:
