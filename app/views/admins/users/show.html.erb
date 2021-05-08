@@ -6,10 +6,13 @@
     <%= flash[:notice] %>
    <% end %>
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-4 text-center">
       <%= attachment_image_tag @user, :image, size: "175x175", fallback: 'no_image.jpg', class: "rounded-circle" %>
+      <div>
+        <%= link_to "編集する", edit_admins_user_path(@user), class:"btn btn-outline-secondary" %>
+      </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 ">
       <table class="table table-bordered table-hover">
         <tr>
           <th class="table-light">会員ID</th>
@@ -40,15 +43,10 @@
         </tr>
       </table>
     </div>
-    <div class="col-md-2">
-      <div>
-        <%= link_to "編集する", edit_admins_user_path(@user), class:"btn btn-primary" %>
-      </div>
-    </div>
   </div>
   <p class="h4 mt-4 mb-5">シフト詳細</p>
-  <div class="row">
-    <div class="col-md-8">
+  <div class="row text-center">
+    <div class="col-md-12">
       <table class="table table-bordered table-hover">
        <thead>
          <tr>
@@ -56,6 +54,7 @@
            <th>利用者</th>
            <th>開始時刻</th>
            <th>終了時刻</th>
+           <th>記録</th>
          </tr>
        </thead>
        <tbody>
@@ -65,6 +64,7 @@
            <td><%= shift.customer_na %></td>
            <td><%= shift.start_time.hour %>：<%= shift.start_time.min %></td>
            <td><%= shift.end_time.hour %>：<%= shift.end_time.min %></td>
+           <td><%= link_to "詳細", record_path(shift), class: "btn btn-outline-secondary" %></td>
          </tr>
         <% end %>
        </tbody>

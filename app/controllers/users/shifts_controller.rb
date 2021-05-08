@@ -7,8 +7,9 @@ class Users::ShiftsController < ApplicationController
   end
   
   def index
-    @shifts = Shift.all
-    @shift_today = Shift.where("DATE(start_time) = '#{Date.today}'")
+    @shifts = current_user.shifts
+   
+    @shift_today = @shifts.where("DATE(start_time) = '#{Date.today}'")
     @users = User.all
   end
   
@@ -16,11 +17,7 @@ class Users::ShiftsController < ApplicationController
     @shift = Shift.find(params[:id])
     @shifts = Shift.all
   end
-  
-  def about
-    @shifts = Shift.includes(:user)
-  end
-  
+
   private
   def shift_params
     params.require(:shift).permit(:start_time, :end_time, :type, :work, :staff, :user_id, :customer_id, :customer_na)

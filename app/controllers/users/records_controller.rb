@@ -7,6 +7,9 @@ class Users::RecordsController < ApplicationController
   end
 
   def create
+    params[:record][:face] = params[:record][:face].to_i
+    params[:record][:sewat] = params[:record][:sewat].to_i
+    params[:record][:bath_care] = params[:record][:bath_care].to_i
     @record = Record.new(record_params)
     if @record.save!
       flash[:notice] = "サービスを追加しました"
@@ -14,19 +17,39 @@ class Users::RecordsController < ApplicationController
     else
       render :index
     end
-
   end
 
 
   def index
-    @records = Record.includes(:user)
-    @record_todays = Record.where("created_at >= ?", Date.today).includes(:user)
+    @records = current_user.records
+    @record_todays = @records.where("created_at >= ?", Date.today)
   end
-  
+
   def show
     @record = Record.find(params[:id])
     @shift = @record.shift
     @min = (@shift.end_time-@shift.start_time)/60
+  end
+
+  def edit
+    @record = Record.find(params[:id])
+    @shift = @record.shift
+    @min = (@shift.end_time-@shift.start_time)/60
+  end
+
+  def update
+    params[:record][:face] = params[:record][:face].to_i
+    params[:record][:sewat] = params[:record][:sewat].to_i
+    params[:record][:bath_care] = params[:record][:bath_care].to_i
+
+    @record = Record.find(params[:id])
+    if @record.update(record_params)
+      flash[:notice] = "サービスを更新しました"
+      redirect_to records_path
+    else
+      render :index
+    end
+
   end
 
   private

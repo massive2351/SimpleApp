@@ -1,6 +1,6 @@
 <div class="container">
- <h2 class="my-5">記録の詳細</h2>
  <div class="border border-dark rounded mt-5">
+ <%= form_with model: @record, url: record_path(@record), local: true do |f| %>
   <div class="row">
    <div class="col-md-3">
     <table class="table table-hover">
@@ -14,10 +14,12 @@
      <td><%= @record.shift.staff %></td>
     </table>
    </div>
+
    <div class="col-md-3">
    </div>
+
    <div class="col-md-3 pull-right mt-3">
-    <%= link_to "編集する", edit_record_path(@record), class:"btn btn-outline-secondary" %>
+    <%= f.submit "サービスを記録する", class:"btn btn-primary" %>
    </div>
   </div>
 
@@ -59,9 +61,12 @@
     <table class="table table-hover">
      <th class="bg-light">顔色</th>
      <td>
-        <%= @record.face %>
+        <%= f.label :face, :良 %>
+        <%= f.radio_button :face, 0, id: 'button1' %>
       </td>
       <td>
+        <%= f.label :face, :不良 %>
+        <%= f.radio_button :face, 1, id: 'button2' %>
       </td>
     </table>
    </div>
@@ -69,16 +74,19 @@
     <table class="table table-hover">
      <th class="bg-light">発汗</th>
      <td>
-        <%= @record.sewat %>
+        <%= f.label :sewat, :有 %>
+        <%= f.radio_button :sewat, 0, id: 'button3' %>
       </td>
       <td>
+        <%= f.label :sewat, :無 %>
+        <%= f.radio_button :sewat, 1, id: 'button4' %>
       </td>
     </table>
    </div>
    <div class="col-md-3">
     <table class="table table-hover">
      <th class="bg-light">体温</th>
-     <td><%= @record.body_temperature %>℃</td>
+     <td><%= f.text_field :body_temperature, class: 'form-control ' %>℃</td>
     </table>
    </div>
   </div>
@@ -106,23 +114,27 @@
     <table class="table table-hover">
      <tr>
       <th class="bg-light">排泄介助</th>
+       <% excretion_cares = ["トイレ介助","オムツ交換","パッド交換","陰部清潔","尿器洗浄"] %>
+       <% excretion_cares.each do |excretion_care| %>
         <td>
-         <% @record.excretion_care %>
+          <%= f.check_box :excretion_care , {multiple: true}, excretion_care, nil  %>
+          <%= f.label :excretion_care, excretion_care %>
         </td>
+       <% end %>
      </tr>
     </table>
 
     <table class="table table-hover">
      <tr>
-       <td>排尿:<%= @record.urinate %>cc</td>
-       <td>排便：<%= @record.evacuate %></td>
+       <td>排尿:<%= f.text_field :urinate, class: 'form-control bootstrap-date-only-width' %>cc</td>
+       <td>排便：<%= f.text_field :evacuate, class: 'form-control bootstrap-date-only-width' %></td>
      </tr>
     </table>
 
     <table class="table table-hover">
      <tr>
       <th class="bg-light">食事介助</th>
-      <td>食事量：<%= @record.meal_care %>/10</td>
+      <td>食事量：<%= f.number_field :meal_care, class: 'form-control bootstrap-date-only-width' %>/10</td>
      </tr>
     </table>
 
@@ -130,7 +142,7 @@
      <tr>
       <th class="bg-light">清拭入浴</th>
       <td>
-        <%= @record.bath_care %>
+        <%= f.collection_radio_buttons :bath_care, Record.bath_cares, :last, :first %>
       </td>
      </tr>
     </table>
@@ -138,9 +150,13 @@
     <table class="table table-hover">
      <tr>
       <th class="bg-light">移動介助</th>
+      <% move_cares = ["移乗介助","移動介助","通院介助","買い物介助"] %>
+       <% move_cares.each do |move_care| %>
         <td>
-          <%= @record.move_care %>
+          <%= f.check_box :move_care , {multiple: true}, move_care, nil  %>
+          <%= f.label :move_care, move_care %>
         </td>
+       <% end %>
      </tr>
     </table>
    </div>
@@ -149,34 +165,41 @@
     <table class="table table-hover">
      <tr>
       <th class="bg-light">清掃</th>
+      <% clean_cares = ["居室","トイレ","浴室","寝室"] %>
+       <% clean_cares.each do |clean_care| %>
         <td>
-          <%= @record.clean_care  %>
+          <%= f.check_box :clean_care , {multiple: true}, clean_care, nil  %>
+          <%= f.label :clean_care, clean_care %>
         </td>
+       <% end %>
      </tr>
     </table>
 
     <table class="table table-hover">
      <tr>
       <th class="bg-light">調理</th>
-      <td><%= @record.cooking_care %></td>
+      <td><%= f.text_field :cooking_care, class: 'form-control' %></td>
      </tr>
     </table>
 
     <table class="table table-hover">
      <tr>
       <th class="bg-light">買い物</th>
-      <td><%= @record.buy_care %></td>
+      <td><%= f.text_field :buy_care, class: 'form-control' %></td>
      </tr>
     </table>
 
     <table class="table table-hover">
      <tr>
       <th class="bg-light">記録</th>
-      <td><%= @record.content %></td>
+      <td><%= f.text_area :content, rows: 5, class: 'form-control' %></td>
      </tr>
     </table>
 
    </div>
+
   </div>
+ <% end %>
  </div>
 </div>
+

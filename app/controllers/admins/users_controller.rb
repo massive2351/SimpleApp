@@ -1,13 +1,13 @@
 class Admins::UsersController < ApplicationController
   layout 'admins'
-  
+
   def index
     @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
-    @shifts = @user.shifts
+    @shifts = @user.shifts.all
   end
 
   def edit

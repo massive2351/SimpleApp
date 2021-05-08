@@ -6,6 +6,8 @@ class Admins::ShiftsController < ApplicationController
     @shift_today = Shift.where("DATE(start_time) = '#{Date.today}'")
     @users = User.all
   end
+  
+  
 
   def new
     @shift = Shift.new

@@ -1,5 +1,4 @@
 <div class="container">
- <h2>サービス記録票</h2>
  <div class="border border-dark rounded mt-5">
  <%= form_with(model: @record, local: true, url: records_path, method: :post) do |f| %>
  <%= f.hidden_field :shift_id, value: @shift.id %>
@@ -66,11 +65,11 @@
      <th class="bg-light">顔色</th>
      <td>
         <%= f.label :face, :良 %>
-        <%= f.radio_button :face, 0 %>
+        <%= f.radio_button :face, 0, id: 'button1' %>
       </td>
       <td>
         <%= f.label :face, :不良 %>
-        <%= f.radio_button :face, 1 %>
+        <%= f.radio_button :face, 1, id: 'button2' %>
       </td>
     </table>
    </div>
@@ -79,11 +78,11 @@
      <th class="bg-light">発汗</th>
      <td>
         <%= f.label :sewat, :有 %>
-        <%= f.radio_button :sewat, 0 %>
+        <%= f.radio_button :sewat, 0, id: 'button3' %>
       </td>
       <td>
-        <%= f.label :sweat, :無 %>
-        <%= f.radio_button :sweat, 1 %>
+        <%= f.label :sewat, :無 %>
+        <%= f.radio_button :sewat, 1, id: 'button4' %>
       </td>
     </table>
    </div>
@@ -146,7 +145,12 @@
      <tr>
       <th class="bg-light">清拭入浴</th>
       <td>
-        <%= f.collection_radio_buttons :bath_care, Record.bath_cares, :last, :first %>
+        <%= f.label :bath_care, :清拭 %>
+        <%= f.radio_button :bath_care, 0, id: 'button5' %>
+      </td>
+      <td>
+        <%= f.label :bath_care, :無 %>
+        <%= f.radio_button :bath_care, 1, id: 'button6' %>
       </td>
      </tr>
     </table>
