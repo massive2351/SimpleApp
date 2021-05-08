@@ -17,6 +17,7 @@
            <th>開始時刻</th>
            <th>終了時刻</th>
            <th>スタッフ</th>
+           <th>ステータス</th>
            <th></th>
          </tr>
        </thead>
@@ -26,6 +27,7 @@
            <td><%= shift.start_time.hour %>：<%= shift.start_time.min %></td>
            <td><%= shift.end_time.hour %>：<%= shift.end_time.min %></td>
            <td><%= shift.staff %></td>
+           <td><%= shift.status %></td>
            <td><%= link_to "詳細", shift_path(shift), class: "text-dark" %></td>
          </tr>
         <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_084915) do
+ActiveRecord::Schema.define(version: 2021_05_08_083111) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -59,6 +59,13 @@ ActiveRecord::Schema.define(version: 2021_05_07_084915) do
     t.integer "user_id"
   end
 
+  create_table "shift_statuses", force: :cascade do |t|
+    t.integer "shift_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+  end
+
   create_table "shifts", force: :cascade do |t|
     t.datetime "start_time", null: false
     t.datetime "end_time", null: false
@@ -70,6 +77,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_084915) do
     t.integer "user_id"
     t.integer "customer_id"
     t.string "customer_na"
+    t.integer "status", default: 0
   end
 
   create_table "users", force: :cascade do |t|

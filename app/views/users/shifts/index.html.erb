@@ -15,6 +15,7 @@
        <th>終了時刻</th>
        <th>仕事内容</th>
        <th>介護の種類</th>
+       <th>ステータス</th>
        <th></th>
       </tr>
     </thead>
@@ -27,6 +28,7 @@
        <td><%= shift.end_time.hour %>：<%= shift.end_time.min %></td>
        <td><%= shift.type %></td>
        <td><%= shift.work %></td>
+       <td><%= shift.status %></td>
        <td><%= link_to "詳細", shift_path(shift), class: "text-dark" %></td>
       </tr>
      <% end %>

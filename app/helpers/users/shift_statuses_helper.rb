@@ -1,0 +1,2 @@
+module Users::ShiftStatusesHelper
+end

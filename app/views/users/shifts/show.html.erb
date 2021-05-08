@@ -43,7 +43,7 @@
                  <h5 class="card-title"><%= link_to @shift.customer_na, customer_path(@shift.customer_id), class: "no-underline" %></h5>
                  <p>電話番号：<%= @shift.customer.telephone_number %></p>
                  <p>住所：〒 <%= @shift.customer.address %><br><%= @shift.customer.address %></p>
-                 <span><%= link_to "詳しく見る", new_record_path(@shift), class:"btn btn-outline-secondary" %></span>
+                 <span><%= link_to "詳しく見る", customer_path(@shift.customer_id), class:"btn btn-outline-secondary" %></span>
              </div>
          </div>
      </div>
@@ -51,10 +51,15 @@
     <div class="card mb-6 mt-2" style="max-width: 600px max-height: 100px">
      <div class="row no-gutters">
          <div class="col-md-12">
+              <p>
+              <%= form_with(model: @shift, url: shift_path(@shift), local: true, class: "form-row") do |f| %>
              <div class="card-body" style="text-align: center;">
-              <span><%= link_to "開始する", new_record_path(@shift), class:"btn btn-outline-secondary" %></span>
-              <span><%= link_to "終了する", new_record_path(@shift), class:"btn btn-outline-secondary" %></span>
-              <span><%= link_to "記録する", new_record_path(@shift), class:"btn btn-outline-secondary" %></span>
+                <%= f.select :status, Shift.statuses.keys.to_a, {}, class:'form-control bootstrap-date-only-width' %>
+                <%= f.submit "更新する", class:"btn btn-outline-secondary" %>
+              
+               <%= link_to "記録する", new_record_path(@shift), class:"btn btn-outline-secondary" %>
+              <% end %>
+              </p>
              </div>
          </div>
      </div>

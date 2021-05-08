@@ -16,6 +16,7 @@ class Admins::ShiftsController < ApplicationController
   end
 
   def create
+    params[:shift][:status] = params[:shift][:status].to_i
     @shift = Shift.new(shift_params)
     @shift.staff = User.find(params[:shift][:user_id]).last_name
     @shift.customer_na = Customer.find(params[:shift][:customer_id]).last_name
@@ -55,7 +56,7 @@ class Admins::ShiftsController < ApplicationController
   
   private
   def shift_params
-    params.require(:shift).permit(:start_time, :end_time, :type, :work, :staff, :user_id, :customer_id, :customer_na)
+    params.require(:shift).permit(:start_time, :end_time, :type, :work, :staff, :user_id, :customer_id, :customer_na, :status)
   end
 
   

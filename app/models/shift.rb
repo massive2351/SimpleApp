@@ -24,5 +24,11 @@ class Shift < ApplicationRecord
     調理: 9,
     掃除: 10,
   }
+  
+   enum status:{
+    準備中: 0,
+    開始: 1,
+    終了: 2,
+  }
 
 end
