@@ -1,1 +1,22 @@
-<h1>トップページ</h1>
+<div class="container mt-5">
+  <div class="row text-center">
+    <div class="col-md-6">
+      <div class="card">
+        <i class="fas fa-user-tie size mt-3"></i>
+        <div class="card-body">
+          <h5 class="card-title">スタッフ</h5>
+          <%= link_to 'Go', new_user_session_path, class: "btn btn-info" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <i class="fab fa-mailchimp size mt-3"></i>
+        <div class="card-body">
+          <h5 class="card-title">管理者</h5>
+          <%= link_to 'Go', new_admin_session_path, class: "btn btn-info" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

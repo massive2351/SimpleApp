@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       end
     end
     resources :informations, only: [:index, :edit, :update, :create, :destroy]
+    resources :records
 
   end
 

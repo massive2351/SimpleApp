@@ -1,7 +1,7 @@
 <div class="container">
- <div class="row">
-   <div class="col-md-8">
-     <table class="table table-borderless">
+ <div class="row mt-5">
+   <div class="col-md-7 mt-5">
+     <table class="table table-bordered table-hover">
        <tr>
          <th>実施日</th>
          <td><%= @shift.start_time.to_date %></td>
@@ -30,11 +30,43 @@
          <th>介護の種類</th>
          <td><%= @shift.work %></td>
        </tr>
+       <tr>
+         <th>ステータス</th>
+         <td><%= @shift.status %></td>
+       </tr>
      </table>
-     <div class="d-flex justify-content-center">
-          <%= link_to "編集する", edit_admins_shift_path(@shift), class:"btn btn-primary" %>
-      </div>
    </div>
+   <div class="col-md-5 mt-5">
+    <div class="card mb-6" style="max-width: 600px max-height: 100px">
+     <div class="row no-gutters">
+         <div class="col-md-4 my-auto">
+          <%= attachment_image_tag @shift.customer, :image, size: "100x200", fallback: "no_image.jpg", class: "card-img-top" %>
+         </div>
+         <div class="col-md-8">
+             <div class="card-body">
+                 <h5 class="card-title"><%= link_to @shift.customer_na, customer_path(@shift.customer_id), class: "no-underline" %></h5>
+                 <p>電話番号：<%= @shift.customer.telephone_number %></p>
+                 <p>住所：〒 <%= @shift.customer.address %><br><%= @shift.customer.address %></p>
+                 <span><%= link_to "詳しく見る", admins_customer_path(@shift.customer_id), class:"btn btn-outline-secondary" %></span>
+             </div>
+         </div>
+     </div>
+    </div>
+    <div class="card mb-6 mt-2" style="max-width: 600px max-height: 100px">
+     <div class="row no-gutters">
+         <div class="col-md-12">
+              <p>
+              <%= form_with(model: @shift, url: shift_path(@shift), local: true, class: "form-row") do |f| %>
+             <div class="card-body" style="text-align: center;">
 
+
+               <%= link_to "記録を確認する", admins_record_path(@shift), class:"btn btn-outline-secondary" %>
+              <% end %>
+              </p>
+             </div>
+         </div>
+     </div>
+    </div>
+  </div>
  </div>
 </div>

@@ -1,0 +1,182 @@
+<div class="container">
+ <h2 class="my-5">記録の詳細</h2>
+ <div class="border border-dark rounded mt-5">
+  <div class="row">
+   <div class="col-md-3">
+    <table class="table table-hover">
+     <th class="bg-light">お名前</th>
+     <td><%= @record.shift.customer_na %></td>
+    </table>
+   </div>
+   <div class="col-md-3">
+    <table class="table table-hover">
+     <th class="bg-light">担当ヘルパー</th>
+     <td><%= @record.shift.staff %></td>
+    </table>
+   </div>
+   <div class="col-md-3">
+   </div>
+   <div class="col-md-3 pull-right mt-3">
+    <%= link_to "編集する", edit_record_path(@record), class:"btn btn-outline-secondary" %>
+   </div>
+  </div>
+
+  <div class="row">
+   <div class="col-md-6">
+    <table class="table table-hover">
+     <th class="bg-light">実施日</th>
+     <td><%= @record.shift.start_time.to_date %></td>
+    </table>
+   </div>
+   <div class="col-md-6">
+    <table class="table table-hover">
+     <th class="bg-light">時間</th>
+     <td>
+      <%= @record.shift.start_time.hour %>：<%= @record.shift.start_time.min %>〜<%= @record.shift.end_time.hour %>：<%= @record.shift.end_time.min %>
+     </td>
+    </table>
+   </div>
+  </div>
+
+  <div class="row">
+   <div class="col-md-6">
+    <table class="table table-hover">
+     <th class="bg-light">サービスの種類</th>
+     <td><%= @record.shift.type %></td>
+     <td><%= @min.floor %>分</td>
+     <td></td>
+    </table>
+   </div>
+  </div>
+
+  <div class="row">
+   <div class="col-md-3">
+    <table class="table table-hover">
+     <th class="bg-light">事前チェック</th>
+    </table>
+   </div>
+   <div class="col-md-3">
+    <table class="table table-hover">
+     <th class="bg-light">顔色</th>
+     <td>
+        <%= @record.face %>
+      </td>
+      <td>
+      </td>
+    </table>
+   </div>
+   <div class="col-md-3">
+    <table class="table table-hover">
+     <th class="bg-light">発汗</th>
+     <td>
+        <%= @record.sewat %>
+      </td>
+      <td>
+      </td>
+    </table>
+   </div>
+   <div class="col-md-3">
+    <table class="table table-hover">
+     <th class="bg-light">体温</th>
+     <td><%= @record.body_temperature %>℃</td>
+    </table>
+   </div>
+  </div>
+
+  <div class="row">
+   <div class="col-md-6">
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">身体介護</th>
+     </tr>
+    </table>
+   </div>
+   <div class="col-md-6">
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">生活介護</th>
+     </tr>
+    </table>
+   </div>
+  </div>
+
+
+  <div class="row">
+   <div class="col-md-6">
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">排泄介助</th>
+        <td>
+         <% @record.excretion_care %>
+        </td>
+     </tr>
+    </table>
+
+    <table class="table table-hover">
+     <tr>
+       <td>排尿:<%= @record.urinate %>cc</td>
+       <td>排便：<%= @record.evacuate %></td>
+     </tr>
+    </table>
+
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">食事介助</th>
+      <td>食事量：<%= @record.meal_care %>/10</td>
+     </tr>
+    </table>
+
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">清拭入浴</th>
+      <td>
+        <%= @record.bath_care %>
+      </td>
+     </tr>
+    </table>
+
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">移動介助</th>
+        <td>
+          <%= @record.move_care %>
+        </td>
+     </tr>
+    </table>
+   </div>
+
+   <div class="col-md-6">
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">清掃</th>
+        <td>
+          <%= @record.clean_care  %>
+        </td>
+     </tr>
+    </table>
+
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">調理</th>
+      <td><%= @record.cooking_care %></td>
+     </tr>
+    </table>
+
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">買い物</th>
+      <td><%= @record.buy_care %></td>
+     </tr>
+    </table>
+
+    <table class="table table-hover">
+     <tr>
+      <th class="bg-light">記録</th>
+      <td><%= @record.content %></td>
+     </tr>
+    </table>
+
+   </div>
+  </div>
+ </div>
+</div>
