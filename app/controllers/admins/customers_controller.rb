@@ -42,6 +42,15 @@ class Admins::CustomersController < ApplicationController
   def destroy
   end
   
+  def search
+    if params[:last_name].present?
+      @customers = Customer.get_by_last_name params[:last_name]
+    else
+      @customers = Customer.all
+    end
+    render 'index'
+  end
+  
   private
   def customer_params
     params.require(:customer).permit(:image, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email)

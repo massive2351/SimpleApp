@@ -12,8 +12,17 @@ Rails.application.routes.draw do
         get 'search'
       end
     end
-    resources :users, only: [:index, :edit, :update, :show]
-    resources :customers
+    resources :users, only: [:index, :edit, :update, :show]do
+      collection do
+        get 'search'
+      end
+    end
+    resources :customers do
+      collection do
+        get 'search'
+      end
+    end
+    resources :informations, only: [:index, :edit, :update, :create, :destroy]
 
   end
 
@@ -29,7 +38,11 @@ Rails.application.routes.draw do
   scope module: :users do
     root :to => 'homes#top'
     get '/top' => 'shifts#top'
-    resources :customers
+    resources :customers do
+      collection do
+        get 'search'
+      end
+    end
     resources :shifts
     resources :records
   end

@@ -4,6 +4,7 @@ class Users::ShiftsController < ApplicationController
   def top
     @shifts = Shift.all
     @shift_today = Shift.where("DATE(start_time) = '#{Date.today}'")
+    @sequence = 1.step
   end
 
   def index

@@ -23,6 +23,15 @@ class Admins::UsersController < ApplicationController
       render :show
     end
   end
+  
+  def search
+    if params[:last_name].present?
+      @users = User.get_by_last_name params[:last_name]
+    else
+      @users = User.all
+    end
+    render 'index'
+  end
 
   private
   def user_params

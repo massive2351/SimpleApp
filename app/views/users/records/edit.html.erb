@@ -19,7 +19,7 @@
    </div>
 
    <div class="col-md-3 pull-right mt-3">
-    <%= f.submit "サービスを記録する", class:"btn btn-primary" %>
+    <%= f.submit "サービスを更新する", class:"btn btn-primary" %>
    </div>
   </div>
 
@@ -61,12 +61,12 @@
     <table class="table table-hover">
      <th class="bg-light">顔色</th>
      <td>
-        <%= f.label :face, :良 %>
         <%= f.radio_button :face, 0, id: 'button1' %>
+        <%= f.label :face, :良 %>
       </td>
       <td>
-        <%= f.label :face, :不良 %>
         <%= f.radio_button :face, 1, id: 'button2' %>
+        <%= f.label :face, :不良 %>
       </td>
     </table>
    </div>
@@ -74,12 +74,12 @@
     <table class="table table-hover">
      <th class="bg-light">発汗</th>
      <td>
-        <%= f.label :sewat, :有 %>
         <%= f.radio_button :sewat, 0, id: 'button3' %>
+        <%= f.label :sewat, :有 %>
       </td>
       <td>
-        <%= f.label :sewat, :無 %>
         <%= f.radio_button :sewat, 1, id: 'button4' %>
+        <%= f.label :sewat, :無 %>
       </td>
     </table>
    </div>
@@ -142,7 +142,13 @@
      <tr>
       <th class="bg-light">清拭入浴</th>
       <td>
-        <%= f.collection_radio_buttons :bath_care, Record.bath_cares, :last, :first %>
+        <%= f.radio_button :bath_care, 0, id: 'button5' %>
+        <%= f.label :bath_care, :清拭 %>
+        
+      </td>
+      <td>
+        <%= f.radio_button :bath_care, 1, id: 'button6' %>
+        <%= f.label :bath_care, :全身浴 %>
       </td>
      </tr>
     </table>

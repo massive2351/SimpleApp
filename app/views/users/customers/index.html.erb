@@ -1,7 +1,16 @@
 <div class="container">
-  <div class="row mx-auto">
-    <p class="h4 mt-4 mb-5">利用者一覧</p>
-  </div>
+  
+    <div class="col-md-4">
+      <p class="h4 mt-4 mb-5">利用者一覧</p>
+    </div>
+    <%= form_tag(search_customers_path, method: "get") do %>
+    <div class="col-md-8">
+        <p class="h4 mt-4 mb-5">
+            <%= label_tag :last_name, "名前" %><%= text_field_tag :last_name, params[:last_name], class: 'form-control bootstrap-date-only-width' %>
+            <%= submit_tag "検索", class:"btn btn-outline-secondary" %>
+        </p>
+    </div>
+    <% end %>
   <% if flash[:notice] %>
     <%= flash[:notice] %>
    <% end %>

@@ -5,6 +5,7 @@ class Admins::ShiftsController < ApplicationController
     @shifts = Shift.all
     @shift_today = Shift.where("DATE(start_time) = '#{Date.today}'")
     @users = User.all
+    @sequence = 1.step
   end
   
   

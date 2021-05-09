@@ -1,15 +1,13 @@
 <div class="container">
+ <div class="col-md-12 mt-4 mx-auto">
+  <h4>本日のシフト</h4>
+ </div>
+ 
  <div class="row mt-5">
-  <div class="col-md-4">
-   <%= month_calendar events: @shifts do |date, shifts| %>
-    <%= date.day %>
-   <% end %>
-  </div>
-  <div class="col-md-8 mt-4">
-   <table class="table table-bordered table-hover">
+  <div class="col-md-8 mt-4 mx-auto">
+   <table class="table table-hover">
     <thead>
       <tr>
-       <th>スタッフ</th>
        <th>利用者</th>
        <th>開始時刻</th>
        <th>終了時刻</th>
