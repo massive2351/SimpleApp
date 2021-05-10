@@ -1,5 +1,4 @@
 <div class="container">
-  
     <div class="col-md-4">
       <p class="h4 mt-4 mb-5">利用者一覧</p>
     </div>
@@ -14,11 +13,11 @@
   <% if flash[:notice] %>
     <%= flash[:notice] %>
    <% end %>
-  <div class="row">
+  <div class="row text-center">
     <div class="col-md-12">
-      <table class="table table-bordered table-hover">
+      <table class="table table-hover">
         <thead>
-          <tr>
+          <tr class="bg-light">
             <th>利用者ID</th>
             <th>写真</th>
             <th>名前</th>
@@ -31,7 +30,7 @@
           <% @customers.each do |customer| %>
             <tr>
               <td><%= customer.id %></td>
-              <td><%= attachment_image_tag customer, :image, size: "175x175", fallback: "no_image.jpg", class: "rounded-circle" %></td>
+              <td><%= attachment_image_tag customer, :image, size: "100x100", fallback: "no_image.jpg", class: "rounded-circle" %></td>
               <td><%= customer.last_name %> <%= customer.first_name %></td>
               <td><%= customer.email %></td>
               <td><%= customer.telephone_number %></td>

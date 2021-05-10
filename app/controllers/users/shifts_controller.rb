@@ -5,6 +5,9 @@ class Users::ShiftsController < ApplicationController
     @shifts = Shift.all
     @shift_today = Shift.where("DATE(start_time) = '#{Date.today}'")
     @sequence = 1.step
+    
+    @informations = Information.order('created_at DESC')
+    @informations_top = @informations.first(3)
   end
 
   def index
