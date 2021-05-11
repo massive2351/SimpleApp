@@ -6,6 +6,9 @@ class Users::CustomersController < ApplicationController
   
   def show
     @customer = Customer.find(params[:id])
+    customers = Customer.all
+    gon.customer = @customer
+    
   end
   
   def search

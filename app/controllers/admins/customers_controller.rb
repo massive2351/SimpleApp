@@ -8,6 +8,7 @@ class Admins::CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
+    @customer.latitude.longitude = Geocoder.coordinates.params[:customer][:address]
     if @customer.save!
       flash[:notice] = "新規利用者を追加しました"
       redirect_to admins_customers_path
@@ -23,6 +24,7 @@ class Admins::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @shifts = @customer.shifts
+    
   end
   
   def edit
@@ -53,7 +55,8 @@ class Admins::CustomersController < ApplicationController
   
   private
   def customer_params
-    params.require(:customer).permit(:image, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email)
+    params.require(:customer).permit(:image, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email, :latitude, :longitude)
   end
   
 end
+

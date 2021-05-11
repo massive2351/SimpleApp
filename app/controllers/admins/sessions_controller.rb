@@ -2,7 +2,7 @@
 
 class Admins::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  
+
   layout 'admins'
 
   # GET /resource/sign_in
@@ -26,13 +26,13 @@ class Admins::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  
+
   def after_sign_in_path_for(resource)
     admins_root_path
   end
 
   def after_sign_out_path_for(resource)
-    roo_path
+    root_path
   end
-  
+
 end
