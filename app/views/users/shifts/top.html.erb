@@ -61,3 +61,39 @@
   <div class="row">
   </div>
 </div>
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <% if flash[:notice] %>
+        <%= flash[:notice] %>
+      <% end %>
+        <%= week_calendar events: @shifts do |date, shifts| %>
+            <%= date.day %>
+            <% shifts.each do |shift| %>
+              <div>
+                <%= shift.id %>
+              </div>
+            <% end %>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-8">
+  <table class="table table-hover">
+    <thead>
+      <th>従業員</th>
+      <th>データ</th>
+    </thead>
+    <% @users.each do |user| %>
+    <tbody>
+      <td><%= user.last_name %></td>
+      <td><%= user.shifts.ids %></td>
+    </tbody>
+    <% end %>
+  </table>
+</div>
+</div>
+
+

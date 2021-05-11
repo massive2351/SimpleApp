@@ -5,6 +5,7 @@ class Users::ShiftsController < ApplicationController
     @shifts = Shift.all
     @shift_today = Shift.where("DATE(start_time) = '#{Date.today}'")
     @sequence = 1.step
+    @users = User.all
     
     @informations = Information.order('created_at DESC')
     @informations_top = @informations.first(3)
@@ -29,6 +30,10 @@ class Users::ShiftsController < ApplicationController
     else
       render :index
     end
+  end
+  
+  def search
+    
   end
 
   private

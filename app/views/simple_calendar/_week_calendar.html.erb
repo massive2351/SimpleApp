@@ -12,6 +12,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th>従業員</th>
         <% date_range.slice(0, 7).each do |day| %>
           <th><%= t('date.abbr_day_names')[day.wday] %></th>
         <% end %>
@@ -20,17 +21,22 @@
 
     <tbody>
       <% date_range.each_slice(7) do |week| %>
+        <% @users.each do |user| %>
         <tr>
-          <% week.each do |day| %>
-            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
-              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
-                <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
-              <% else %>
-                <% passed_block.call day, sorted_events.fetch(day, []) %>
+          <td>
+            <%= user.last_name %>
+            <% week.each do |day| %>
+              <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+                <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
+                  <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
+                <% else %>
+                  <% passed_block.call day, sorted_events.fetch(day, []) %>
+                <% end %>
               <% end %>
             <% end %>
-          <% end %>
+          </td>
         </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
