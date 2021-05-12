@@ -1,7 +1,7 @@
 class Admins::CustomersController < ApplicationController
   before_action :authenticate_admin!
   layout 'admins'
-  
+
   def new
     @customer = Customer.new
   end
@@ -24,20 +24,20 @@ class Admins::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     gon.customer = @customer
     @shifts = @customer.shifts
-    
+
   end
-  
+
   def edit
     @customer = Customer.find(params[:id])
   end
-  
+
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       redirect_to admins_customer_path(@customer)
       flash[:notice] = "利用者情報を更新しました"
     else
-      render :show
+      render :edit
     end
   end
 
@@ -49,11 +49,11 @@ class Admins::CustomersController < ApplicationController
     end
     render 'index'
   end
-  
+
   private
   def customer_params
     params.require(:customer).permit(:image, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email, :latitude, :longitude)
   end
-  
+
 end
 
