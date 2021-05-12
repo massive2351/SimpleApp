@@ -4,11 +4,14 @@ class Admins::InformationsController < ApplicationController
 
   def create
     @information = Information.new(information_params)
-    if @information.save!
+    @informations = Information.all
+    
+    if @information.save
       flash[:notice] = "連絡事項を追加しました"
       redirect_to admins_informations_path
     else
       render :index
+      
     end
     
   end
