@@ -1,4 +1,5 @@
 class Admins::RecordsController < ApplicationController
+  before_action :authenticate_admin!
   def show
     @record = Record.find(params[:id])
     @shift = @record.shift

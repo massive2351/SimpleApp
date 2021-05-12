@@ -1,5 +1,6 @@
 class Users::ShiftsController < ApplicationController
   layout 'users'
+  before_action :authenticate_user!
 
   def top
     @shifts = Shift.all

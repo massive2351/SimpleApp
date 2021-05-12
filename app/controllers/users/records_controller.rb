@@ -1,4 +1,5 @@
 class Users::RecordsController < ApplicationController
+  before_action :authenticate_user!
   layout 'users'
   def new
     @record = Record.new

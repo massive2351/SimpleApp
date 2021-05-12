@@ -1,4 +1,5 @@
 class Admins::InformationsController < ApplicationController
+  before_action :authenticate_admin!
   layout 'admins'
 
   def create
