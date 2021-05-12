@@ -41,9 +41,6 @@ class Admins::CustomersController < ApplicationController
     end
   end
 
-  def destroy
-  end
-  
   def search
     if params[:last_name].present?
       @customers = Customer.get_by_last_name params[:last_name]

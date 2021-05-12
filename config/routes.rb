@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   namespace :admins do
     root :to => 'shifts#index'
-    resources :shifts, only: [:new, :create, :edit, :update, :show] do
+    resources :shifts, only: [:index, :new, :create, :edit, :update, :show] do
       collection do
         get 'search'
       end
@@ -17,13 +17,13 @@ Rails.application.routes.draw do
         get 'search'
       end
     end
-    resources :customers do
+    resources :customers, only: [:new, :create, :update, :edit, :index, :show] do
       collection do
         get 'search'
       end
     end
     resources :informations, only: [:index, :edit, :update, :create, :destroy]
-    resources :records
+    resources :records, only: [:show]
 
   end
 
@@ -39,14 +39,14 @@ Rails.application.routes.draw do
   scope module: :users do
     root :to => 'homes#top'
     get '/top' => 'shifts#top'
-    resources :customers do
+    resources :customers, only: [:index, :show] do
       collection do
         get 'search'
       end
     end
-    resources :shifts
-    resources :records
-    resources :informations
+    resources :shifts, only: [ :update, :index, :show]
+    resources :records, only: [:new, :create, :update, :edit, :index, :show]
+    resources :informations, only: [:index]
   end
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
