@@ -21,7 +21,7 @@ class Admins::UsersController < ApplicationController
       redirect_to admins_user_path(@user)
       flash[:notice] = "スッタフ情報を更新しました"
     else
-      render :show
+      render :edit
     end
   end
   

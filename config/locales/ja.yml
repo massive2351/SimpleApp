@@ -60,8 +60,20 @@ ja:
   activerecord:
     models:
       customer: 利用者
+      user: スタッフ
     attributes:
       customer:
+        last_name: 名前(姓)
+        first_name: 名前(名)
+        last_name_kana: 名前(セイ)
+        first_name_kana: 名前(メイ)
+        postal_code: 郵便番号
+        address: 住所
+        telephone_number: 電話番号
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード(確認)
+      user:
         last_name: 名前(姓)
         first_name: 名前(名)
         last_name_kana: 名前(セイ)
