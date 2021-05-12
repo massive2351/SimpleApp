@@ -6,10 +6,13 @@
     <p class="h4 mt-4 mb-5">利用者詳細</p>
   </div>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4 text-center mt-4">
       <%= attachment_image_tag @customer, :image, size: "175x175", fallback: 'no_image.jpg', class: "rounded-circle" %>
+      <div class="mt-5">
+        <%= link_to "編集する", edit_admins_customer_path(@customer), class:"btn btn-outline-secondary" %>
+      </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-8">
       <table class="table table-bordered table-hover">
         <tr>
           <th class="table-light">利用者ID</th>
@@ -39,16 +42,14 @@
           <td><%= @customer.email %></td>
         </tr>
       </table>
-      <div class="d-flex justify-content-center mt-5">
-        <%= link_to "編集する", edit_admins_customer_path(@customer), class:"btn btn-outline-secondary" %>
-      </div>
     </div>
   </div>
   <p class="h4 mt-4 mb-5">シフト詳細</p>
-  <div class="row">
+
+  <div class="row text-center">
     <div class="col-md-8">
-      <table class="table table-bordered table-hover">
-       <thead>
+      <table class="table table-hover">
+       <thead class="bg-light">
          <tr>
            <th>実施日</th>
            <th>スタッフ</th>
@@ -68,5 +69,37 @@
        </tbody>
       </table>
     </div>
+    <div class="col-md-4">
+      <div id='admins-map'></div>
+    </div>
   </div>
 </div>
+
+<script>
+
+  let map;
+
+  function initMap() {
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('admins-map'), {
+      // コントローラーで定義した変数から緯度経度を呼び出し、マップの中心に表示
+      center: {
+        lat: gon.customer.latitude,
+        lng: gon.customer.longitude
+      },
+      zoom: 16,
+    });
+
+    marker = new google.maps.Marker({
+      // コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる
+      position: {
+        lat: gon.customer.latitude,
+        lng: gon.customer.longitude
+      },
+      map: map
+    });
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcq30rikD1_S5S4MFsdK67PHmWzzKNFvE&callback=initMap" async defer></script>

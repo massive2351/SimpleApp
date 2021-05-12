@@ -1,62 +1,58 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <h5>新規利用者</h5>
-      <%= form_with(model: @customer, local: true, url: admins_customers_path, method: :post) do |f| %>
-        <div class="form-group">
-          <%= f.label :顔写真 %>
+<div class="container mt-5">
+  <div class="col-md-12">
+    <%= form_with(model: @customer, local: true, url: admins_customers_path, method: :post) do |f| %>
+    <table class="table table-bordered table-hover">
+      <tr>
+        <th class="table-light">写真</th>
+        <td>
           <%= f.attachment_field :image %>
-          
-        </div>
-        
-        <div class="form-group">
-         <%= f.label :姓 %>
-         <%= f.text_field :last_name, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :名 %>
-          <%= f.text_field :first_name, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :姓（カナ） %>
-          <%= f.text_field :last_name_kana, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :名（カナ） %>
-          <%= f.text_field :first_name_kana, class: "form-control" %>
-        </div>
-        
-        <div class="form-group">
-          <%= f.label :住所, "郵便番号(ハイフン不要)" %> 
-          <%= f.text_field :postal_code, class: "form-control" %>
-        </div>
-        
-        <div class="form-group">
+        </td>
+      </tr>
+      <tr>
+        <th class="table-light">氏名</th>
+        <td>
+          <%= f.label :姓  %><%= f.text_field :last_name, class: "form-control bootstrap-date-only-width" %><%= f.label :名 %><%= f.text_field :first_name, class: "form-control bootstrap-date-only-width" %>
+        </td>
+      </tr>
+      <tr>
+        <th class="table-light">フリガナ</th>
+        <td>
+          <%= f.label :姓（カナ） %><%= f.text_field :last_name_kana, class: "form-control bootstrap-date-only-width" %><%= f.label :名（カナ） %><%= f.text_field :first_name_kana, class: "form-control bootstrap-date-only-width" %>
+        </td>
+      </tr>
+      <tr>
+        <th class="table-light">郵便番号</th>
+        <td>
+          <%= f.label :住所, "郵便番号(ハイフン不要)" %>
+          <%= f.text_field :postal_code, class: "form-control bootstrap-date-only-width" %>
+        </td>
+      </tr>
+      <tr>
+        <th class="table-light">住所</th>
+        <td>
           <%= f.label :address, "住所(部屋番号まで)" %>
-          <%= f.text_field :address, class: "form-control" %>
-        </div>
-        
-        <div class="form-group">
+          <%= f.text_field :address, class: "form-control " %>
+        </td>
+
+      </tr>
+      <tr>
+        <th class="table-light">電話番号</th>
+        <td>
           <%= f.label :telephone_number, "電話番号(ハイフン不要)" %>
-          <%= f.text_field :telephone_number, class: "form-control" %>
-        </div>
-        <div class="form-group">
+          <%= f.text_field :telephone_number, class: "form-control bootstrap-date-only-width" %>
+        </td>
+      </tr>
+      <tr>
+        <th class="table-light">メールアドレス</th>
+        <td>
           <%= f.label :email, "メールアドレス" %>
           <%= f.email_field :email, class: "form-control" %>
+        </td>
+      </tr>
+    </table>
+    <div class="d-flex justify-content-center">
+          <%= f.submit "新規登録する", class:"btn btn-outline-secondary" %>
         </div>
-
-        <div class="form-group">
-          <%= f.label :介護のジャンル %>
-          
-        </div>
-
-        <div class="d-flex justify-content-center">
-          <%= f.submit "入力", class:"btn btn-primary" %>
-        </div>
-      <% end %>
-    </div>
+    <% end %>
   </div>
 </div>

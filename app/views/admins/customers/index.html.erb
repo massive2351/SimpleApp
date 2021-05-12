@@ -2,7 +2,7 @@
   <div class="row mx-auto">
     <div class="col-md-8">
         <p class="h4 mt-4 mb-5">利用者一覧</p>
-      
+
     <%= form_tag(search_admins_customers_path, method: "get") do %>
       <p class="h4 mt-4 mb-5">
           <%= label_tag :last_name, "名前" %><%= text_field_tag :last_name, params[:last_name], class: 'form-control bootstrap-date-only-width' %>
@@ -10,6 +10,11 @@
       </p>
     </div>
     <% end %>
+    <div class="col-md-4">
+      <p class="h4 mt-4 text-right mt-5">
+          <%= link_to "新規登録する", new_admins_customer_path, class:"btn btn-outline-secondary" %>
+      </p>
+    </div>
   </div>
   <div class="row text-center">
     <div class="col-md-12 ">

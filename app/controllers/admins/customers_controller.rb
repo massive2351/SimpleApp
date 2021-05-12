@@ -8,7 +8,6 @@ class Admins::CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    @customer.latitude.longitude = Geocoder.coordinates.params[:customer][:address]
     if @customer.save!
       flash[:notice] = "新規利用者を追加しました"
       redirect_to admins_customers_path
@@ -23,6 +22,7 @@ class Admins::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    gon.customer = @customer
     @shifts = @customer.shifts
     
   end
