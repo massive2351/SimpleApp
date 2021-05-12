@@ -8,7 +8,7 @@ class Admins::CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    if @customer.save!
+    if @customer.save
       flash[:notice] = "新規利用者を追加しました"
       redirect_to admins_customers_path
     else
