@@ -1,17 +1,18 @@
 <div class="container">
- <div class="border border-dark rounded mt-5">
+ <h4 class="mt-5">記録を編集する</h4>
+ <div class="border border-dark rounded mt-3">
  <%= form_with model: @record, url: record_path(@record), local: true do |f| %>
   <div class="row">
    <div class="col-md-3">
     <table class="table table-hover">
      <th class="bg-light">お名前</th>
-     <td><%= @record.shift.customer_na %></td>
+     <td><%= @record.shift.customer.last_name %></td>
     </table>
    </div>
    <div class="col-md-3">
     <table class="table table-hover">
      <th class="bg-light">担当ヘルパー</th>
-     <td><%= @record.shift.staff %></td>
+     <td><%= @record.shift.user.last_name %></td>
     </table>
    </div>
 
@@ -19,7 +20,7 @@
    </div>
 
    <div class="col-md-3 pull-right mt-3">
-    <%= f.submit "サービスを更新する", class:"btn btn-primary" %>
+    <%= f.submit "サービスを更新する", class:"btn btn-success" %>
    </div>
   </div>
 

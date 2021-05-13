@@ -23,6 +23,7 @@ class Users::RecordsController < ApplicationController
 
   def index
     @records = current_user.records
+    @sequence = 1.step
     @record_todays = @records.where("created_at >= ?", Date.today)
   end
 

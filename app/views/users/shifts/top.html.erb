@@ -1,17 +1,17 @@
 <div class="container information_top">
   <div class="row">
     <div class="col-md-12 mx-auto mt-5">
-     <h4>新着連絡</h4>
+    <h4>新着連絡</h4>
      <table class="table table-hover">
        <% @informations_top.each do |information| %>
        <tbody>
-         <th>[<%= information.created_at.to_date %>]</th>
-         <td>[<%= information.title %>]</td>
-         <td>「<%= information.body %>」</td>
+         <th><%= information.created_at.to_date %></th>
+         <td><%= information.title %></td>
+         <td><%= information.body %></td>
        </tbody>
        <% end %>
      </table>
-     <%= link_to "一覧", informations_path, class: "btn btn-outline-secondary" %>
+       <%= link_to "一覧", informations_path, class: "btn btn-outline-secondary bootstrap-date-only-width" %>
     </div>
   </div>
 </div>

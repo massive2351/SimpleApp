@@ -1,18 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8 mx-auto mt-5">
+    <div class="col-md-12 mx-auto mt-5">
      <h4>連絡一覧</h4>
      <table class="table table-hover">
        <thead>
-         <th>連絡日</th>
-         <th>タイトル</th>
-         <th>本文</th>
+         <th><i class="fas fa-calendar-day"></th>
+         <th><i class="fas fa-paper-plane"></i></th>
+         <th><i class="fas fa-envelope-open"></i></th>
        </thead>
        <% @informations.each do |information| %>
        <tbody>
-         <th>[<%= information.created_at.to_date %>]</th>
-         <td>[<%= information.title %>]</td>
-         <td>「<%= information.body %>」</td>
+         <th><%= information.created_at.to_date %></th>
+         <td><%= information.title %></td>
+         <td><%= information.body %></td>
        </tbody>
        <% end %>
      </table>
