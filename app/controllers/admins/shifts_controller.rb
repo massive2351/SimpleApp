@@ -7,7 +7,7 @@ class Admins::ShiftsController < ApplicationController
     @shift_today = Shift.where("DATE(start_time) = '#{Date.today}'")
     @users = User.all
     @sequence = 1.step
-    
+
   end
 
 
@@ -22,14 +22,14 @@ class Admins::ShiftsController < ApplicationController
     params[:shift][:status] = params[:shift][:status].to_i
     @shift = Shift.new(shift_params)
 
-    if @shift.staff == ""
-      @shift.staff = User.find(params[:shift][:user_id]).last_name
+    if @shift.user_id == ""
+      @shift.user_id = User.find(params[:shift][:user_id])
     else
       flash[:notice1] = "空欄はダメだよ"
     end
 
-    if @shift.customer_na == ""
-       @shift.customer_na = Customer.find(params[:shift][:customer_id]).last_name
+    if @shift.customer_id== ""
+       @shift.customer_ = Customer.find(params[:shift][:customer_id])
     else
        flash[:ale] = "空欄はダメだよ"
     end

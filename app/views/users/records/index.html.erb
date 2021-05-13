@@ -1,6 +1,7 @@
 <div class="container">
   <h3 class="my-5">本日の記録</h3>
   <div class="container">
+  <% if @record_todays.present? %>
    <div class="row">
      <% @record_todays.each do |record| %>
        <div class="col-md-3">
@@ -17,36 +18,43 @@
        </div>
      <%end%>
    </div>
-  </div>
+  <% else %>
+   <p class="text-center">本日はありません。ゆっくり休息してください。</p>
+  <% end %>
   <div class="row mt-3">
    <h3 class="my-5">記録一覧</h3>
    <div class="col-md-12">
-    <table class="table table-hover ">
+   <% if @records.present? %>
+    <table class="table ">
      <thead>
        <tr>
-        <th>実施日</th>
-        <th>利用者</th>
-        <th>開始時刻</th>
-        <th>終了時刻</th>
-        <th>仕事内容</th>
-        <th>介護の種類</th>
+        <th><i class="fas fa-flag"></i></th>
+        <th><i class="fas fa-calendar-day"></i></th>
+        <th><i class="fas fa-house-user"></th>
+        <th><i class="fas fa-briefcase"></th>
+        <th><i class="fas fa-wheelchair"></th>
+        <th><i class="fas fa-briefcase"></th>
         <th></th>
        </tr>
      </thead>
      <tbody>
-      <% @records.each do |record| %>
-       <tr>
-         <td><%= record.shift.start_time.to_date %></td>
-         <td><%= record.shift.customer.last_name %></td>
-         <td><%= record.shift.start_time.hour %>：<%= record.shift.start_time.min %></td>
-         <td><%= record.shift.end_time.hour %>：<%= record.shift.end_time.min %></td>
-         <td><%= record.shift.type %></td>
-         <td><%= record.shift.work %></td>
-         <td><%= link_to "詳細", record_path(record), class: "btn btn-outline-secondary" %></td>
-       </tr>
-      <% end %>
+       <% @records.each do |record| %>
+        <tr>
+          <td><%= @sequence.next %></td>
+          <td><%= record.shift.start_time.to_date %></td>
+          <td><%= record.shift.customer.last_name %></td>
+          <td><%= record.shift.start_time.hour %>：<%= record.shift.start_time.min %>〜<%= record.shift.end_time.hour %>：<%= record.shift.end_time.min %></td>
+          <td><%= record.shift.type %></td>
+          <td><%= record.shift.work %></td>
+          <td><%= link_to "詳細", record_path(record), class: "btn btn-outline-secondary" %></td>
+        </tr>
+       <% end %>
      </tbody>
     </table>
+    <% else %>
+     <p class="text-center">記録はありません。</p>
+    <% end %>
     </div>
   </div>
+</div>
 </div>

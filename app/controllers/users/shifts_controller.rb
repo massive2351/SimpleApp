@@ -16,6 +16,7 @@ class Users::ShiftsController < ApplicationController
     @shifts = current_user.shifts
     @shift_today = @shifts.where("DATE(start_time) = '#{Date.today}'")
     @users = User.all
+    @sequence = 1.step
   end
 
   def show

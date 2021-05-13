@@ -2,36 +2,44 @@
  <div class="col-md-12 mt-4 mx-auto">
   <h4>本日のシフト</h4>
  </div>
- 
  <div class="row mt-5">
-  <div class="col-md-8 mt-4 mx-auto">
-   <table class="table table-hover">
-    <thead>
-      <tr>
-       <th>利用者</th>
-       <th>開始時刻</th>
-       <th>終了時刻</th>
-       <th>仕事内容</th>
-       <th>介護の種類</th>
-       <th>ステータス</th>
-       <th></th>
-      </tr>
-    </thead>
-    <tbody>
-     <% @shift_today.each do |shift| %>
-      <tr>
-       <td><%= shift.customer.last_name %></td>
-       <td><%= shift.start_time.hour %>：<%= shift.start_time.min %></td>
-       <td><%= shift.end_time.hour %>：<%= shift.end_time.min %></td>
-       <td><%= shift.type %></td>
-       <td><%= shift.work %></td>
-       <td><%= shift.status %></td>
-       <td><%= link_to "詳細", shift_path(shift), class: "text-dark" %></td>
-      </tr>
-     <% end %>
-    </tbody>
-   </table>
+  <div class="col-md-12 mt-4 mx-auto">
+   <% if @shift_today.present? %>
+    <table class="table">
+     <thead>
+       <tr>
+        <th><i class="fas fa-flag"></i></th>
+        <th><i class="fas fa-house-user"></th>
+        <th><i class="fas fa-briefcase"></th>
+        <th><i class="fas fa-wheelchair"></i></th>
+        <th><i class="fas fa-briefcase"></i></th>
+        <th><i class="fab fa-algolia"></i></th>
+        <th></th>
+       </tr>
+     </thead>
+     <tbody>
+      <% @shift_today.each do |shift| %>
+       <% if shift.status == "終了" %>
+         <tr bgcolor="#FFCCCC">
+       <% elsif shift.status == "開始" %>
+         <tr bgcolor="#CCFFCC">
+       <% elsif shift.status == "準備中" %>
+         <tr bgcolor="#FFFFFF">
+       <% end %>
+        <td><%= @sequence.next %></td>
+        <td><%= shift.customer.last_name %></td>
+        <td><%= shift.start_time.hour %>：<%= shift.start_time.min %>〜<%= shift.end_time.hour %>：<%= shift.end_time.min %></td>
+        <td><%= shift.type %></td>
+        <td><%= shift.work %></td>
+        <td><%= shift.status %></td>
+        <td><%= link_to "詳細", shift_path(shift), class: "btn btn-outline-secondary" %></td>
+       </tr>
+      <% end %>
+     </tbody>
+    </table>
+   <% else %>
+    <p class="text-center">本日はありません。ゆっくり休息してください。</p>
+   <% end %>
    </div>
  </div>
 </div>
-
