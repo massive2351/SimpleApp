@@ -8,11 +8,11 @@
        </tr>
        <tr>
          <th>スッタフ名</th>
-         <td><%= @shift.staff %></td>
+         <td><%= @shift.user.last_name %></td>
        </tr>
        <tr>
          <th>利用者</th>
-         <td><%= link_to @shift.customer_na, customer_path(@shift.customer_id) %></td>
+         <td><%= link_to @shift.customer.last_name, customer_path(@shift.customer_id) %></td>
        </tr>
        <tr>
          <th>開始時刻</th>
@@ -40,7 +40,7 @@
          </div>
          <div class="col-md-8">
              <div class="card-body">
-                 <h5 class="card-title"><%= link_to @shift.customer_na, customer_path(@shift.customer_id), class: "no-underline" %></h5>
+                 <h5 class="card-title"><%= link_to @shift.customer.last_name, customer_path(@shift.customer_id), class: "no-underline" %></h5>
                  <p>電話番号：<%= @shift.customer.telephone_number %></p>
                  <p>住所：〒 <%= @shift.customer.address %><br><%= @shift.customer.address %></p>
                  <span><%= link_to "詳しく見る", customer_path(@shift.customer_id), class:"btn btn-outline-secondary" %></span>

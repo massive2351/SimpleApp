@@ -43,8 +43,8 @@
 
           <td><%= @sequence.next %></td>
           <td><%= shift.start_time.hour %>：<%= shift.start_time.min %>〜<%= shift.end_time.hour %>：<%= shift.end_time.min %></td>
-          <td><%= shift.staff %></td>
-          <td><%= shift.customer_na %> 様</td>
+          <td><%= shift.user.last_name %></td>
+          <td><%= shift.customer.last_name%> 様</td>
           <th>[<%= shift.status %>]</i></th>
           <td><%= link_to "詳細", shift_path(shift), class: "btn btn-outline-secondary" %></td>
         </tbody>
@@ -72,28 +72,10 @@
             <%= date.day %>
             <% shifts.each do |shift| %>
               <div>
-                <%= shift.id %>
+                <%#= shift.start_time %>
               </div>
             <% end %>
         <% end %>
     </div>
   </div>
 </div>
-
-<div class="col-md-8">
-  <table class="table table-hover">
-    <thead>
-      <th>従業員</th>
-      <th>データ</th>
-    </thead>
-    <% @users.each do |user| %>
-    <tbody>
-      <td><%= user.last_name %></td>
-      <td><%= user.shifts.ids %></td>
-    </tbody>
-    <% end %>
-  </table>
-</div>
-</div>
-
-

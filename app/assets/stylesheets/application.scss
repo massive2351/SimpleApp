@@ -60,3 +60,23 @@
   width: 400px;
   height: 400px;
 }
+
+.table{
+    width: 100%;
+    table-layout: fixed;
+
+}
+
+.table th{
+ text-align: center;
+}
+
+.table td{
+  text-align: center;
+}
+
+.title-box{
+  background-color: #e8e8e8;
+   border: solid 2px #ddd;
+   margin-bottom: 3px;
+}

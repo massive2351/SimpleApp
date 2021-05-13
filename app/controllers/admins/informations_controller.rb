@@ -11,7 +11,7 @@ class Admins::InformationsController < ApplicationController
       redirect_to admins_informations_path
     else
       render :index
-      
+
     end
     
   end
@@ -39,6 +39,7 @@ class Admins::InformationsController < ApplicationController
     @information = Information.find(params[:id])
     @information.destroy
     redirect_to admins_informations_path
+    flash[:notice] = "連絡事項を消去しました"
   end
 
   private

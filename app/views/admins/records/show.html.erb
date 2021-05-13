@@ -5,13 +5,13 @@
    <div class="col-md-3">
     <table class="table table-hover">
      <th class="bg-light">お名前</th>
-     <td><%= @record.shift.customer_na %></td>
+     <td><%= @record.shift.customer.last_name %></td>
     </table>
    </div>
    <div class="col-md-3">
     <table class="table table-hover">
      <th class="bg-light">担当ヘルパー</th>
-     <td><%= @record.shift.staff %></td>
+     <td><%= @record.shift.customer.last_name %></td>
     </table>
    </div>
    <div class="col-md-3">

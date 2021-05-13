@@ -9,14 +9,14 @@
           <%= attachment_image_tag record.shift.customer, :image, size: "125x125", fallback: "no_image.jpg", class: "card-img-top" %>
            <div class="card-body text-center">
              <h4 class="card-title"><%= record.shift.start_time.hour %>：<%= record.shift.start_time.min %>〜<%= record.shift.end_time.hour %>：<%= record.shift.end_time.min %></h4>
-             <h6 class="card-subtitle"><%= record.shift.customer_na %></h6>
+             <h6 class="card-subtitle"><%= record.shift.customer.last_name %></h6>
              <p class="card-text"><%= record.shift.type %>を<%= ((record.shift.end_time-record.shift.start_time)/60).floor %>分しました。</p>
            </div>
          </div>
         <% end %>
        </div>
      <%end%>
-   </div> 
+   </div>
   </div>
   <div class="row mt-3">
    <h3 class="my-5">記録一覧</h3>
@@ -37,7 +37,7 @@
       <% @records.each do |record| %>
        <tr>
          <td><%= record.shift.start_time.to_date %></td>
-         <td><%= record.shift.customer_na %></td>
+         <td><%= record.shift.customer.last_name %></td>
          <td><%= record.shift.start_time.hour %>：<%= record.shift.start_time.min %></td>
          <td><%= record.shift.end_time.hour %>：<%= record.shift.end_time.min %></td>
          <td><%= record.shift.type %></td>

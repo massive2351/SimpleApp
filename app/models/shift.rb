@@ -4,6 +4,13 @@ class Shift < ApplicationRecord
   has_many :records, dependent: :destroy
 
   self.inheritance_column = :_type_disabled
+  
+  validates :user_id, presence: true
+  validates :customer_id, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
+  validates :type, presence: true
+  validates :work, presence: true
 
   enum type:{
     身体介護: 0,

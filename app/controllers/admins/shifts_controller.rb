@@ -1,5 +1,5 @@
 class Admins::ShiftsController < ApplicationController
-  
+
   layout 'admins'
 
   def index
@@ -7,9 +7,10 @@ class Admins::ShiftsController < ApplicationController
     @shift_today = Shift.where("DATE(start_time) = '#{Date.today}'")
     @users = User.all
     @sequence = 1.step
+    
   end
-  
-  
+
+
 
   def new
     @shift = Shift.new
@@ -20,16 +21,26 @@ class Admins::ShiftsController < ApplicationController
   def create
     params[:shift][:status] = params[:shift][:status].to_i
     @shift = Shift.new(shift_params)
-    @shift.staff = User.find(params[:shift][:user_id]).last_name
-    @shift.customer_na = Customer.find(params[:shift][:customer_id]).last_name
-    if @shift.save!
+
+    if @shift.staff == ""
+      @shift.staff = User.find(params[:shift][:user_id]).last_name
+    else
+      flash[:notice1] = "空欄はダメだよ"
+    end
+
+    if @shift.customer_na == ""
+       @shift.customer_na = Customer.find(params[:shift][:customer_id]).last_name
+    else
+       flash[:ale] = "空欄はダメだよ"
+    end
+
+    if @shift.save
       flash[:notice] = "シフトを追加しました"
       redirect_to admins_root_path
     else
-      render :index
+      redirect_to new_admins_shift_path
     end
   end
-
 
   def show
     @shift = Shift.find(params[:id])
@@ -55,12 +66,12 @@ class Admins::ShiftsController < ApplicationController
 
   def search
   end
-  
+
   private
   def shift_params
-    params.require(:shift).permit(:start_time, :end_time, :type, :work, :staff, :user_id, :customer_id, :customer_na, :status)
+    params.require(:shift).permit(:start_time, :end_time, :type, :work, :user_id, :customer_id, :status)
   end
 
-  
+
 
 end
