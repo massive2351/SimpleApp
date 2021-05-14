@@ -39,7 +39,7 @@
    <div class="col-md-5 mt-5">
     <div class="card mb-6" style="max-width: 600px max-height: 100px">
      <div class="row no-gutters">
-         <div class="col-md-4 my-auto">
+         <div class="col-md-3 my-auto ml-1">
           <%= attachment_image_tag @shift.customer, :image, size: "100x200", fallback: "no_image.jpg", class: "card-img-top" %>
          </div>
          <div class="col-md-8">
@@ -58,9 +58,11 @@
               <p>
               <%= form_with(model: @shift, url: shift_path(@shift), local: true, class: "form-row") do |f| %>
              <div class="card-body" style="text-align: center;">
-
-
-               <%= link_to "記録を確認する", admins_record_path(@shift), class:"btn btn-outline-secondary" %>
+               <% if @record.present? %>
+                <%= link_to "記録を確認する", admins_record_path(@record), class:"btn btn-outline-secondary" %>
+               <% else %>
+                <P>記録はされていません</P>
+               <% end %>
               <% end %>
               </p>
              </div>

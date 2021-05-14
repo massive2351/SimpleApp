@@ -44,6 +44,7 @@ class Admins::ShiftsController < ApplicationController
 
   def show
     @shift = Shift.find(params[:id])
+    @record = @shift.records
   end
 
   def edit
