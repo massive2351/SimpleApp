@@ -61,22 +61,34 @@
   height: 400px;
 }
 
-.table{
+.table-top{
     width: 100%;
     table-layout: fixed;
 
 }
 
-.table th{
+.table-top th{
  text-align: center;
 }
 
-.table td{
+.table-top td{
   text-align: center;
 }
 
 .title-box{
-  background-color: #e8e8e8;
+  background-color: #FFFFFF;
+   border: solid 2px #ddd;
+   margin-bottom: 3px;
+}
+
+.title-box-start{
+  background-color: #CCFFCC;
+   border: solid 2px #ddd;
+   margin-bottom: 3px;
+}
+
+.title-box-finish{
+  background-color: #FFCCCC;
    border: solid 2px #ddd;
    margin-bottom: 3px;
 }
@@ -164,11 +176,24 @@
 }
 
 footer{
-  
+
   bottom: 0;
   width: 100%;
   height: 50px;
   text-align: center;
   padding: 45px 0;
   background-color: #FFF;
+}
+
+.link{
+  text-decoration: none;
+  color: black ;
+  background-color: black;
+  transform: scale(1);
+}
+
+.link:hover {
+	text-decoration: none;
+	color: white;
+
 }
