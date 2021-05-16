@@ -5,7 +5,7 @@ class CreateRecords < ActiveRecord::Migration[5.2]
       t.integer :face, default: 0
       t.integer :sewat, default: 0
       t.string :body_temperature
-      t.integer :excretion_care, default: 0
+      t.integer :excretion_care
       t.string :urinate
       t.string :evacuate
       t.string :meal_care
