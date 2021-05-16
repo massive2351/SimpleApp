@@ -53,26 +53,19 @@ ActiveRecord::Schema.define(version: 2021_05_12_090718) do
     t.integer "face", default: 0
     t.integer "sewat", default: 0
     t.string "body_temperature"
+    t.text "excretion_care", default: "0"
     t.string "urinate"
     t.string "evacuate"
     t.string "meal_care"
     t.integer "bath_care", default: 0
+    t.integer "move_care", default: 0
+    t.integer "clean_care", default: 0
     t.string "cooking_care"
     t.string "buy_care"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "excretion_care"
-    t.text "move_care"
-    t.text "clean_care"
     t.integer "user_id"
-  end
-
-  create_table "shift_statuses", force: :cascade do |t|
-    t.integer "shift_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "status", default: 0
   end
 
   create_table "shifts", force: :cascade do |t|
@@ -84,7 +77,6 @@ ActiveRecord::Schema.define(version: 2021_05_12_090718) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "customer_id"
-    t.integer "status", default: 0
   end
 
   create_table "users", force: :cascade do |t|
