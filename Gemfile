@@ -73,4 +73,7 @@ gem 'enum_help'
 gem 'gon'
 gem 'geocoder'
 
-
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
