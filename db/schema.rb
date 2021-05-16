@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_12_090718) do
+ActiveRecord::Schema.define(version: 2021_05_16_101631) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2021_05_12_090718) do
     t.integer "face", default: 0
     t.integer "sewat", default: 0
     t.string "body_temperature"
-    t.text "excretion_care", default: "0"
+    t.text "excretion_care"
     t.string "urinate"
     t.string "evacuate"
     t.string "meal_care"
