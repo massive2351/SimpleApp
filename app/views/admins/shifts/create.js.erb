@@ -1,3 +1,2 @@
-
+$('.shifts').html("<%= escape_javascript(render 'shifts', shifts: Shift.all) %>");
 $('#exampleModal').modal('hide');
-$('.shifts').html("<%= escape_javascript(render 'shifts', shifts: @shifts) %>");

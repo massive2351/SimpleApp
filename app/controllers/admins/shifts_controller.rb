@@ -23,6 +23,7 @@ class Admins::ShiftsController < ApplicationController
   def create
     params[:shift][:status] = params[:shift][:status].to_i
     @shift = Shift.new(shift_params)
+    @users = User.all
 
     if @shift.user_id == ""
       @shift.user_id = User.find(params[:shift][:user_id])
@@ -38,6 +39,7 @@ class Admins::ShiftsController < ApplicationController
 
     if @shift.save
       flash[:notice] = "シフトを追加しました"
+      #redirect_to admins_shifts_path
     end
   end
   

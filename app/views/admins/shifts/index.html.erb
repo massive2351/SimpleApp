@@ -4,8 +4,10 @@
     <p class="text-right"><%= link_to "シフトを追加する", new_admins_shift_path, class:"btn btn-success" %></p>
   </div>
   <div class="row mt-3">
-    <div class="col-md-12 shifts">
-      <%= render 'shifts', shifts: @shifts %>
+    <div class="col-md-12">
+      <div class="shifts">
+        <%= render 'shifts', shifts: @shifts %>
+      </div>
     </div>
   </div>
 </div>
@@ -24,7 +26,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <%= form_with(model: @shift, url: admins_shifts_path, method: :post) do |f| %>
+        <%= form_with model: @shift, url: admins_shifts_path do |f| %>
         <div class="modal-body">
           <div class="form-group">
             <% if flash[:ale1] %>
