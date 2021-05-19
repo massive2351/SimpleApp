@@ -73,10 +73,11 @@
 
 .table-top td{
   text-align: center;
+  padding-top: 10px;
 }
 
 .title-box{
-  background-color: #FFFFFF;
+  background-color: #EEEEEE;
    border: solid 2px #ddd;
    margin-bottom: 3px;
 }
@@ -197,3 +198,16 @@ footer{
 	color: white;
 
 }
+
+.link-calendar{
+  text-decoration: none;
+  color: black ;
+  transform: scale(1);
+}
+
+.link-calendar:hover {
+	text-decoration: none;
+	color: black;
+
+}
+

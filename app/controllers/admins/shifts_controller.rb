@@ -1,4 +1,5 @@
 class Admins::ShiftsController < ApplicationController
+  
 
   layout 'admins'
 
