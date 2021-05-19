@@ -1,0 +1,4 @@
+$("input").val("");
+$("textarea").val("");
+
+$('.informations').html("<%= escape_javascript(render 'informations', informations: @informations) %>");

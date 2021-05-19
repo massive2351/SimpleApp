@@ -1,0 +1,16 @@
+ <table class="table table-hover">
+   <thead>
+     <th>タイトル</th>
+     <th>本文</th>
+     <th></th>
+     <th></th>
+   </thead>
+   <% informations.each do |information| %>
+   <tbody>
+     <td><%= information.title %></td>
+     <td><%= information.body %></td>
+     <td><%= link_to "編集", edit_admins_information_path(information), class: "btn btn-outline-secondary" %></td>
+     <td><%= link_to "消去", admins_information_path(information), method: :delete, class: "btn btn-outline-secondary" %></td>
+   </tbody>
+   <% end %>
+ </table>

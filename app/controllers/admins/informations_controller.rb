@@ -3,16 +3,8 @@ class Admins::InformationsController < ApplicationController
   layout 'admins'
 
   def create
-    @information = Information.new(information_params)
     @informations = Information.all
-    
-    if @information.save
-      flash[:notice] = "連絡事項を追加しました"
-      redirect_to admins_informations_path
-    else
-      render :index
-
-    end
+    Information.create(information_params)
     
   end
 

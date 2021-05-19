@@ -1,5 +1,5 @@
 class Admins::ShiftsController < ApplicationController
-  
+
 
   layout 'admins'
 
@@ -9,9 +9,10 @@ class Admins::ShiftsController < ApplicationController
     @users = User.all
     @sequence = 1.step
 
+    @shift = Shift.new
+    @users =  User.all
+    @customers = Customer.all
   end
-
-
 
   def new
     @shift = Shift.new
@@ -37,11 +38,9 @@ class Admins::ShiftsController < ApplicationController
 
     if @shift.save
       flash[:notice] = "シフトを追加しました"
-      redirect_to admins_root_path
-    else
-      redirect_to new_admins_shift_path
     end
   end
+  
 
   def show
     @shift = Shift.find(params[:id])

@@ -3,7 +3,7 @@
   <div class="col-md-12">
 　<h2>新規シフト入力</h2>
 
-   <%= form_with(model: @shift, local: true, url: admins_shifts_path, method: :post) do |f| %>
+   <%= form_with(model: @shift, url: admins_shifts_path, method: :post, local: true) do |f| %>
     <table class="table table-bordered table-hover mt-3">
       <tr>
         <th class="table-light">スタッフ</th>
