@@ -37,7 +37,7 @@
           <% @customers.each do |customer| %>
             <tr>
               <td><%= customer.id %></td>
-              <td><%= attachment_image_tag customer, :image, size: "100x100", fallback: "no_image.jpg", class: "rounded-circle" %></td>
+              <td><%= attachment_image_tag customer, :image, :fill, 100, 100 , fallback: "no_image.jpg" %></td>
               <td><%= customer.last_name %> <%= customer.first_name %></td>
               <td><%= customer.email %></td>
               <td><%= customer.telephone_number %></td>
