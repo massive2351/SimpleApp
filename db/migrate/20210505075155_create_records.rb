@@ -10,8 +10,8 @@ class CreateRecords < ActiveRecord::Migration[5.2]
       t.string :evacuate
       t.string :meal_care
       t.integer :bath_care, default: 0
-      t.integer :move_care, default: 0
-      t.integer :clean_care, default: 0
+      t.integer :move_care
+      t.integer :clean_care
       t.string :cooking_care
       t.string :buy_care
       t.text :content
