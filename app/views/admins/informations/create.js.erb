@@ -1,4 +1,9 @@
-$("input").val("");
-$("textarea").val("");
+<% if @status == 'success' %>
+  $("input").val("");
+  $("textarea").val("");
+  $('.informations').html("<%= escape_javascript(render 'informations', informations: @informations) %>");
+<%  elsif @status == 'fail' %>
+    alert('連絡が追加されていません!');
+<% end %>
 
-$('.informations').html("<%= escape_javascript(render 'informations', informations: @informations) %>");
+

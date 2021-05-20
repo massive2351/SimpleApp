@@ -27,19 +27,18 @@ class Admins::ShiftsController < ApplicationController
 
     if @shift.user_id == ""
       @shift.user_id = User.find(params[:shift][:user_id])
-    else
-      flash[:notice1] = "空欄はダメだよ"
     end
 
     if @shift.customer_id== ""
        @shift.customer_ = Customer.find(params[:shift][:customer_id])
-    else
-       flash[:ale] = "空欄はダメだよ"
     end
-
-    if @shift.save
-      flash[:notice] = "シフトを追加しました"
-      #redirect_to admins_shifts_path
+    
+    respond_to do |format|
+      if @shift.save
+        format.js { @status = "success" }
+      else
+        format.js { @status = "fail" }
+      end
     end
   end
   

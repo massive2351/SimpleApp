@@ -1,2 +1,10 @@
-$('.shifts').html("<%= escape_javascript(render 'shifts', shifts: Shift.all) %>");
-$('#exampleModal').modal('hide');
+
+<% if @status == 'success' %>
+    $('.shifts').html("<%= escape_javascript(render 'shifts', shifts: Shift.all) %>");
+    $('#exampleModal').modal('hide');
+    $("input").val("");
+    $("select").val("");
+<%  elsif @status == 'fail' %>
+    alert('シフト追加されていません!');
+<% end %>
+

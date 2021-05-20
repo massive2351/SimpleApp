@@ -1,7 +1,54 @@
 
 <div class="container">
   <div class="col-md-12 mt-5">
-    <p class="text-right"><%= link_to "シフトを追加する", new_admins_shift_path, class:"btn btn-success" %></p>
+    <p class="text-right">
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+        シフト追加
+      </button>
+    
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">新規シフト</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <%= form_with model: @shift, url: admins_shifts_path do |f| %>
+            <div class="modal-body">
+              <div class="form-group">
+                <%= f.label :user_id, "スタッフ" %>
+                <%= f.collection_select :user_id, @users, :id, :last_name, {include_blank: true}, class: "selectpicker form-control bootstrap-date-only-width  #{"is-invalid" if @shift.errors.include?(:user_id)}"  %>
+              </div>
+              <div class="form-group">
+                <%= f.label :customer_id, "利用者" %>
+                <%= f.collection_select :customer_id, @customers, :id, :last_name, {include_blank: true}, class: "selectpicker form-control bootstrap-date-only-width #{"is-invalid" if @shift.errors.include?(:customer_id)}"  %>
+              </div>
+              <div class="form-group">
+                <%= f.label :"サービス時間" %><br>
+                <%= f.datetime_field :start_time, class: "form-control bootstrap-date-only-width #{"is-invalid" if @shift.errors.include?(:start_time)}" %>-<%= f.datetime_field :end_time, class: "form-control bootstrap-date-only-width #{"is-invalid" if @shift.errors.include?(:end_time)}" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :type, "仕事内容" %>
+                <%= f.select :type, options_for_select(Shift.types.keys), {include_blank: true},class: "form-control bootstrap-date-only-width #{"is-invalid" if @shift.errors.include?(:type)}" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :work, "介護種類" %>
+                <%= f.select :work, options_for_select(Shift.works.keys), {include_blank: true},class: "form-control bootstrap-date-only-width #{"is-invalid" if @shift.errors.include?(:work)}" %>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+              <div class="d-flex justify-content-center">
+                <%= f.submit "新規登録する", class:"btn btn-success" %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </p>
   </div>
   <div class="row mt-3">
     <div class="col-md-12">
@@ -12,57 +59,4 @@
   </div>
 </div>
 
-<div class="container">
-  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-    シフト追加
-  </button>
 
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">新規シフト</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <%= form_with model: @shift, url: admins_shifts_path do |f| %>
-        <div class="modal-body">
-          <div class="form-group">
-            <% if flash[:ale1] %>
-              <%= flash[:ale1] %>
-            <% end %>
-            <%= f.label :user_id, "スタッフ" %>
-            <%= f.collection_select :user_id, @users, :id, :last_name, {include_blank: true}, class: "selectpicker form-control bootstrap-date-only-width  #{"is-invalid" if @shift.errors.include?(:user_id)}"  %>
-          </div>
-          <div class="form-group">
-            <% if flash[:ale2] %>
-              <%= flash[:ale2] %>
-            <% end %>
-            <%= f.label :customer_id, "利用者" %>
-            <%= f.collection_select :customer_id, @customers, :id, :last_name, {include_blank: true}, class: "selectpicker form-control bootstrap-date-only-width #{"is-invalid" if @shift.errors.include?(:customer_id)}"  %>
-          </div>
-          <div class="form-group">
-            <%= f.label :サービス時間 %><br>
-            <%= f.datetime_field :start_time, class: "form-control bootstrap-date-only-width #{"is-invalid" if @shift.errors.include?(:start_time)}" %>-<%= f.datetime_field :end_time, class: "form-control bootstrap-date-only-width #{"is-invalid" if @shift.errors.include?(:end_time)}" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :type, "仕事内容" %>
-            <%= f.select :type, options_for_select(Shift.types.keys), {include_blank: true},class: "form-control bootstrap-date-only-width #{"is-invalid" if @shift.errors.include?(:type)}" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :work, "介護種類" %>
-            <%= f.select :work, options_for_select(Shift.works.keys), {include_blank: true},class: "form-control bootstrap-date-only-width #{"is-invalid" if @shift.errors.include?(:work)}" %>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-          <div class="d-flex justify-content-center">
-            <%= f.submit "新規登録する", class:"btn btn-success" %>
-          </div>
-        </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>

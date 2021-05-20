@@ -4,7 +4,15 @@ class Admins::InformationsController < ApplicationController
 
   def create
     @informations = Information.all
-    Information.create(information_params)
+    @information = Information.new(information_params)
+    
+    respond_to do |format|
+      if @information.save
+        format.js { @status = "success" }
+      else
+        format.js { @status = "fail" }
+      end
+    end
     
   end
 
