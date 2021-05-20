@@ -4,10 +4,11 @@ class Users::ShiftsController < ApplicationController
 
   def top
     @shifts = Shift.all
-    @shift_today = Shift.where("DATE(start_time) = '#{Date.today}'")
+    shift_today = Shift.where("DATE(start_time) = '#{Date.today}'")
+    @shift_today = shift_today.order(start_time: :desc)
     @sequence = 1.step
     @users = User.all
-    
+
     @informations = Information.order('created_at DESC')
     @informations_top = @informations.first(3)
   end
@@ -23,7 +24,7 @@ class Users::ShiftsController < ApplicationController
     @shift = Shift.find(params[:id])
     @shifts = Shift.all
   end
-  
+
   def update
     @shift = Shift.find(params[:id])
     if @shift.update(shift_params)
@@ -33,9 +34,9 @@ class Users::ShiftsController < ApplicationController
       render :index
     end
   end
-  
+
   def search
-    
+
   end
 
   private

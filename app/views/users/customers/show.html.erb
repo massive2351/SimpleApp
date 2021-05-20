@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-md-3">
-      <%= attachment_image_tag @customer, :image, size: "175x175", fallback: 'no_image.jpg', class: "rounded-circle" %>
+      <%= attachment_image_tag @customer, :image, :fill, 250, 250, fallback: 'no_image.jpg' %>
     </div>
     <div class="col-md-9">
       <table class="table table-bordered table-hover">

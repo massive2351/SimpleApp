@@ -1,6 +1,7 @@
 class Users::RecordsController < ApplicationController
   before_action :authenticate_user!
   layout 'users'
+  
   def new
     @record = Record.new
     @shift = Shift.find(params[:format])
@@ -19,7 +20,6 @@ class Users::RecordsController < ApplicationController
       render :index
     end
   end
-
 
   def index
     @records = current_user.records
