@@ -4,8 +4,9 @@ class Admins::ShiftsController < ApplicationController
   layout 'admins'
 
   def index
-    @shifts = Shift.all
-    @shift_today = Shift.where("DATE(start_time) = '#{Date.today}'")
+    shifts = Shift.all
+    @shifts = shifts.order(:start_time)
+    
     @users = User.all
     @sequence = 1.step
 

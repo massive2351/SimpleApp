@@ -4,8 +4,8 @@ class Users::ShiftsController < ApplicationController
 
   def top
     @shifts = Shift.all
-    shift_today = Shift.where("DATE(start_time) = '#{Date.today}'")
-    @shift_today = shift_today.order(start_time: :desc)
+    shift_todays = Shift.where("DATE(start_time) = '#{Date.today}'")
+    @shift_todays = shift_todays.order(:start_time)
     @sequence = 1.step
     @users = User.all
 
