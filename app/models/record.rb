@@ -3,18 +3,21 @@ class Record < ApplicationRecord
   belongs_to :user, optional: true
 
   enum face:{
-    良: 0,
-    不良: 1,
+    "": 0,
+    良: 1,
+    不良: 2,
   }
 
   enum sewat:{
-    有: 0,
-    無: 1,
+    " ": 0,
+    有: 1,
+    無: 2,
   }
 
   enum bath_care:{
-    清拭: 0,
-    全身浴: 1,
+    "  ": 0,
+    清拭: 1,
+    全身浴: 2,
   }
 
   before_save do

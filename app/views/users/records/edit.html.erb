@@ -6,13 +6,13 @@
    <div class="col-md-3">
     <table class="table table-hover">
      <th class="bg-light">お名前</th>
-     <td><%= @record.shift.customer.last_name %></td>
+     <td><%= @record.shift.customer.last_name %> <%= @record.shift.customer.first_name %></td>
     </table>
    </div>
    <div class="col-md-3">
     <table class="table table-hover">
      <th class="bg-light">担当ヘルパー</th>
-     <td><%= @record.shift.user.last_name %></td>
+     <td><%= @record.shift.user.last_name %> <%= @record.shift.user.first_name %></td>
     </table>
    </div>
 
@@ -35,7 +35,7 @@
     <table class="table table-hover">
      <th class="bg-light">時間</th>
      <td>
-      <%= @record.shift.start_time.hour %>：<%= @record.shift.start_time.min %>〜<%= @record.shift.end_time.hour %>：<%= @record.shift.end_time.min %>
+      <%= @record.shift.start_time.strftime("%H:%M") %>〜<%= @record.shift.strftime("%H:%M") %>
      </td>
     </table>
    </div>

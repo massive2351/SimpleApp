@@ -16,13 +16,13 @@
     <div class="col-md-3">
      <table class="table table-hover">
       <th class="bg-light">お名前</th>
-      <td><%= @shift.customer.last_name %></td>
+      <td><%= @shift.customer.last_name %> <%= @shift.customer.first_name %></td>
      </table>
     </div>
     <div class="col-md-3">
      <table class="table table-hover">
       <th class="bg-light">担当ヘルパー</th>
-      <td><%= @shift.user.last_name %></td>
+      <td><%= @shift.user.last_name %> ><%= @shift.user.first_name %></td>
      </table>
     </div>
  
@@ -45,7 +45,7 @@
      <table class="table table-hover">
       <th class="bg-light">時間</th>
       <td>
-       <%= @shift.start_time.hour %>：<%= @shift.start_time.min %>〜<%= @shift.end_time.hour %>：<%= @shift.end_time.min %>
+       <%= @shift.start_time.strftime("%H:%M") %>〜<%= @shift.end_time.strftime("%H:%M") %>
       </td>
      </table>
     </div>
@@ -73,11 +73,11 @@
       <th class="bg-light">顔色</th>
       <td>
          <%= f.label :face, :良 %>
-         <%= f.radio_button :face, 0, id: 'button1' %>
+         <%= f.radio_button :face, 1, id: 'button1' %>
        </td>
        <td>
          <%= f.label :face, :不良 %>
-         <%= f.radio_button :face, 1, id: 'button2' %>
+         <%= f.radio_button :face, 2, id: 'button2' %>
        </td>
      </table>
     </div>
@@ -86,11 +86,11 @@
       <th class="bg-light">発汗</th>
       <td>
          <%= f.label :sewat, :有 %>
-         <%= f.radio_button :sewat, 0, id: 'button3' %>
+         <%= f.radio_button :sewat, 1, id: 'button3' %>
        </td>
        <td>
          <%= f.label :sewat, :無 %>
-         <%= f.radio_button :sewat, 1, id: 'button4' %>
+         <%= f.radio_button :sewat, 2, id: 'button4' %>
        </td>
      </table>
     </div>
@@ -152,11 +152,11 @@
        <th class="bg-light">清拭入浴</th>
        <td>
          <%= f.label :bath_care, :清拭 %>
-         <%= f.radio_button :bath_care, 0, id: 'button5' %>
+         <%= f.radio_button :bath_care, 1, id: 'button5' %>
        </td>
        <td>
          <%= f.label :bath_care, :全身浴 %>
-         <%= f.radio_button :bath_care, 1, id: 'button6' %>
+         <%= f.radio_button :bath_care, 2, id: 'button6' %>
        </td>
       </tr>
      </table>
