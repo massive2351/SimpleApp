@@ -15,7 +15,8 @@ class Users::ShiftsController < ApplicationController
 
   def index
     @shifts = current_user.shifts
-    @shift_today = @shifts.where("DATE(start_time) = '#{Date.today}'")
+    shift_today = @shifts.where("DATE(start_time) = '#{Date.today}'")
+    @shift_todays = shift_today.order(:start_time)
     @users = User.all
     @sequence = 1.step
   end

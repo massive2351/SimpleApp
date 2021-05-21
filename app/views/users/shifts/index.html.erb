@@ -4,7 +4,7 @@
  </div>
  <div class="row mt-2">
   <div class="col-md-12 mx-auto">
-   <% if @shift_today.present? %>
+   <% if @shift_todays.present? %>
     <table class="table">
      <thead>
        <tr>
@@ -18,7 +18,7 @@
        </tr>
      </thead>
      <tbody>
-      <% @shift_today.each do |shift| %>
+      <% @shift_todays.each do |shift| %>
        <% if shift.status == "終了" %>
          <tr bgcolor="#FFCCCC">
        <% elsif shift.status == "開始" %>
