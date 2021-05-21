@@ -42,7 +42,7 @@
         <tr>
           <td><%= @sequence.next %></td>
           <td><%= record.shift.start_time.to_date %></td>
-          <td><%= record.shift.customer.last_name %></td>
+          <td><%= record.shift.customer.last_name %> <%= record.shift.customer.first_name %></td>
           <td><%= record.shift.start_time.strftime("%H:%M") %>〜<%= record.shift.end_time.strftime("%H:%M") %></td>
           <td><%= record.shift.type %></td>
           <td><%= record.shift.work %></td>
