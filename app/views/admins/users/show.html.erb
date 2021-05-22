@@ -65,8 +65,8 @@
            <td><%= shift.start_time.strftime("%H:%M") %></td>
            <td><%= shift.end_time.strftime("%H:%M") %></td>
            <td>
-            <% if shift.records.ids.present? %>
-             <%= link_to "詳細", admins_record_path(shift.records.ids), class: "btn btn-outline-secondary" %>
+            <% if shift.record %>
+             <%= link_to "詳細", admins_record_path(shift.record.id), class: "btn btn-outline-secondary" %>
             <% else %>
              <%= shift.status %>
             <% end %>

@@ -38,5 +38,7 @@ class Shift < ApplicationRecord
     開始: 1,
     終了: 2,
   }
+  
+  
 
 end

@@ -1,5 +1,6 @@
 class Admins::UsersController < ApplicationController
   before_action :authenticate_admin!
+  before_action :find_user, only: [:show, :edit, :update,]
   layout 'admins'
 
   def index
@@ -7,16 +8,13 @@ class Admins::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @shifts = @user.shifts.all
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to admins_user_path(@user)
       flash[:notice] = "スッタフ情報を更新しました"
@@ -35,6 +33,11 @@ class Admins::UsersController < ApplicationController
   end
 
   private
+  
+  def find_user
+    @user = User.find(params[:id])
+  end
+  
   def user_params
     params.require(:user).permit(:image, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email)
   end

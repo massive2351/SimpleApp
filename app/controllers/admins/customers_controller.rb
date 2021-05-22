@@ -1,5 +1,6 @@
 class Admins::CustomersController < ApplicationController
   before_action :authenticate_admin!
+  before_action :find_customer, only: [:show, :edit, :update]
   layout 'admins'
 
   def new
@@ -21,18 +22,17 @@ class Admins::CustomersController < ApplicationController
   end
 
   def show
-    @customer = Customer.find(params[:id])
-    gon.customer = @customer
     @shifts = @customer.shifts
+    
+    #GoogleMapの緯度経度表す為
+    gon.customer = @customer
 
   end
 
   def edit
-    @customer = Customer.find(params[:id])
   end
 
   def update
-    @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       redirect_to admins_customer_path(@customer)
       flash[:notice] = "利用者情報を更新しました"
@@ -51,6 +51,11 @@ class Admins::CustomersController < ApplicationController
   end
 
   private
+  
+  def find_customer
+    @customer = Customer.find(params[:id])
+  end
+  
   def customer_params
     params.require(:customer).permit(:image, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email, :latitude, :longitude)
   end

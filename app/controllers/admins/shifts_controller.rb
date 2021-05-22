@@ -1,6 +1,6 @@
 class Admins::ShiftsController < ApplicationController
-
-
+  before_action :authenticate_admin!
+  before_action :find_shift, only: [:show, :edit, :update]
   layout 'admins'
 
   def index
@@ -34,6 +34,7 @@ class Admins::ShiftsController < ApplicationController
        @shift.customer_ = Customer.find(params[:shift][:customer_id])
     end
     
+    #新規投稿の非同期
     respond_to do |format|
       if @shift.save
         format.js { @status = "success" }
@@ -45,18 +46,16 @@ class Admins::ShiftsController < ApplicationController
   
 
   def show
-    @shift = Shift.find(params[:id])
     @record = @shift.record
   end
 
   def edit
     @users =  User.all
     @customers = Customer.all
-    @shift = Shift.find(params[:id])
   end
 
   def update
-    @shift = Shift.find(params[:id])
+    
     @shift.staff = User.find(params[:shift][:user_id]).last_name
     @shift.customer_na = Customer.find(params[:shift][:customer_id]).last_name
     if @shift.update(shift_params)
@@ -65,16 +64,17 @@ class Admins::ShiftsController < ApplicationController
     else
       render :index
     end
-  end
-
-  def search
+    
   end
 
   private
+  
+  def find_shift
+    @shift = Shift.find(params[:id])
+  end
+  
   def shift_params
     params.require(:shift).permit(:start_time, :end_time, :type, :work, :user_id, :customer_id, :status)
   end
-
-
 
 end

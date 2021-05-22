@@ -30,5 +30,6 @@ class Record < ApplicationRecord
     self.move_care.gsub!(/[\[\]\"]/, "") if attribute_present?("move_care")
     self.clean_care.gsub!(/[\[\]\"]/, "") if attribute_present?("clean_care")
   end
+  
 
 end
