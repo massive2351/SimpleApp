@@ -1,5 +1,6 @@
 class Users::RecordsController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_record, only: [:show, :edit, :update]
   layout 'users'
   
   def new
@@ -28,13 +29,11 @@ class Users::RecordsController < ApplicationController
   end
 
   def show
-    @record = Record.find(params[:id])
     @shift = @record.shift
     @min = (@shift.end_time-@shift.start_time)/60
   end
 
   def edit
-    @record = Record.find(params[:id])
     @shift = @record.shift
     @min = (@shift.end_time-@shift.start_time)/60
   end
@@ -44,7 +43,6 @@ class Users::RecordsController < ApplicationController
     params[:record][:sewat] = params[:record][:sewat].to_i
     params[:record][:bath_care] = params[:record][:bath_care].to_i
 
-    @record = Record.find(params[:id])
     if @record.update(record_params)
       flash[:notice] = "サービスを更新しました"
       redirect_to records_path
@@ -55,6 +53,11 @@ class Users::RecordsController < ApplicationController
   end
 
   private
+  
+  def find_record
+    @record = Record.find(params[:id])
+  end
+  
   def record_params
     params.require(:record).permit(
       :shift_id, :user_id, :face, :sewat, :body_temperature, :urinate, :evacuate, :meal_care,

@@ -1,13 +1,16 @@
 class Users::CustomersController < ApplicationController
   before_action :authenticate_user!
-   layout 'users'
+  before_action :find_customer, only: [:show]
+  layout 'users'
+   
   def index
     @customers = Customer.all
   end
   
   def show
-    @customer = Customer.find(params[:id])
     customers = Customer.all
+    
+    #GoogleMapの緯度経度表す為
     gon.customer = @customer
     
   end
@@ -19,6 +22,12 @@ class Users::CustomersController < ApplicationController
       @customers = Customer.all
     end
     render 'index'
+  end
+  
+  private
+  
+  def find_customer
+    @customer = Customer.find(params[:id])
   end
  
 end

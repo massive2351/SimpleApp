@@ -1,6 +1,7 @@
 class Users::ShiftsController < ApplicationController
-  layout 'users'
   before_action :authenticate_user!
+   before_action :find_shift, only: [:show, :update]
+  layout 'users'
 
   def top
     @shifts = Shift.all
@@ -22,12 +23,10 @@ class Users::ShiftsController < ApplicationController
   end
 
   def show
-    @shift = Shift.find(params[:id])
     @shifts = Shift.all
   end
 
   def update
-    @shift = Shift.find(params[:id])
     if @shift.update(shift_params)
       flash[:notice] = "サービスを更新しました"
       redirect_to shift_path(@shift)
@@ -41,6 +40,11 @@ class Users::ShiftsController < ApplicationController
   end
 
   private
+  
+  def find_shift
+    @shift = Shift.find(params[:id])
+  end
+  
   def shift_params
     params.require(:shift).permit(:start_time, :end_time, :type, :work, :staff, :user_id, :customer_id, :customer_na, :status)
   end
