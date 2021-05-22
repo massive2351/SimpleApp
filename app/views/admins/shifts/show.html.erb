@@ -55,16 +55,17 @@
     <div class="card mb-6 mt-2" style="max-width: 600px max-height: 100px">
      <div class="row no-gutters">
          <div class="col-md-12">
-              <p>
-              <%= form_with(model: @shift, url: shift_path(@shift), local: true, class: "form-row") do |f| %>
              <div class="card-body" style="text-align: center;">
-               <% if @record.present? %>
-                <%= link_to "記録を確認する", admins_record_path(@record), class:"btn btn-outline-secondary" %>
-               <% else %>
-                <P>記録はされていません</P>
-               <% end %>
+
+     
+
+              <% if @record %>
+               <p><%= link_to "記録を確認する", admins_record_path(@record), class:"btn btn-outline-secondary" %></p>
+              <% else %>
+               <P>記録はされていません</P>
               <% end %>
-              </p>
+         
+
              </div>
          </div>
      </div>

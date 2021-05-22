@@ -14,11 +14,6 @@
         <td><%= @shift.user.last_name %></td>
        </table>
       </div>
-      <div class="col-md-3">
-      </div>
-      <div class="col-md-3 pull-right mt-3">
-       <%= link_to "編集する", edit_record_path(@record), class:"btn btn-outline-secondary" %>
-      </div>
      </div>
    
      <div class="row">
@@ -32,7 +27,7 @@
        <table class="table table-hover">
         <th class="bg-light">時間</th>
         <td>
-         <%= @record.shift.start_time.hour %>：<%= @record.shift.start_time.min %>〜<%= @record.shift.end_time.hour %>：<%= @record.shift.end_time.min %>
+         <%= @record.shift.start_time.strftime("%H:%M") %>〜<%= @record.shift.end_time.strftime("%H:%M") %>
         </td>
        </table>
       </div>
