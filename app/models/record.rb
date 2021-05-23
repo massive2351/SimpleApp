@@ -32,10 +32,8 @@ class Record < ApplicationRecord
   
   #recordの本日のデータを取得
   def self.record_today
-    record_todays = where("created_at >= ?", Date.today)
+    where("created_at >= ?", Date.today)
   end
   
-
-
 
 end
