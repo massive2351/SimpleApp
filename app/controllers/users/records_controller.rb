@@ -13,7 +13,6 @@ class Users::RecordsController < ApplicationController
     params[:record][:face] = params[:record][:face].to_i
     params[:record][:sewat] = params[:record][:sewat].to_i
     params[:record][:bath_care] = params[:record][:bath_care].to_i
-    
     @record = Record.new(record_params)
     if @record.save!
       flash[:notice] = "サービスを追加しました"
@@ -24,9 +23,10 @@ class Users::RecordsController < ApplicationController
   end
 
   def index
-    @records = current_user.records
+    #最新の順番
+    @records = current_user.records.order("created_at DESC")
     @sequence = 1.step
-    @record_todays = @records.where("created_at >= ?", Date.today)
+    @record_todays = @records.record_today
   end
 
   def show

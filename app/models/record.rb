@@ -30,6 +30,11 @@ class Record < ApplicationRecord
     self.clean_care.gsub!(/[\[\]\"]/, "") if attribute_present?("clean_care")
   end
   
+  #recordの本日のデータを取得
+  def self.record_today
+    record_todays = where("created_at >= ?", Date.today)
+  end
+  
 
 
 
