@@ -4,14 +4,12 @@ class Admins::ShiftsController < ApplicationController
   layout 'admins'
 
   def index
-    shifts = Shift.all
-    @shifts = shifts.order(:start_time)
-    
+    @shifts = Shift.all
     @users = User.all
+
     @sequence = 1.step
 
     @shift = Shift.new
-    @users =  User.all
     @customers = Customer.all
   end
 
@@ -24,6 +22,8 @@ class Admins::ShiftsController < ApplicationController
   def create
     params[:shift][:status] = params[:shift][:status].to_i
     @shift = Shift.new(shift_params)
+    @shifts = Shift.order(:start_time)
+
     @users = User.all
 
     if @shift.user_id == ""
@@ -33,7 +33,7 @@ class Admins::ShiftsController < ApplicationController
     if @shift.customer_id== ""
        @shift.customer_ = Customer.find(params[:shift][:customer_id])
     end
-    
+
     #新規投稿の非同期
     respond_to do |format|
       if @shift.save
@@ -43,7 +43,7 @@ class Admins::ShiftsController < ApplicationController
       end
     end
   end
-  
+
 
   def show
     @record = @shift.record
@@ -55,7 +55,7 @@ class Admins::ShiftsController < ApplicationController
   end
 
   def update
-    
+
     @shift.staff = User.find(params[:shift][:user_id]).last_name
     @shift.customer_na = Customer.find(params[:shift][:customer_id]).last_name
     if @shift.update(shift_params)
@@ -64,15 +64,15 @@ class Admins::ShiftsController < ApplicationController
     else
       render :index
     end
-    
+
   end
 
   private
-  
+
   def find_shift
     @shift = Shift.find(params[:id])
   end
-  
+
   def shift_params
     params.require(:shift).permit(:start_time, :end_time, :type, :work, :user_id, :customer_id, :status)
   end

@@ -31,7 +31,7 @@
                   <% passed_block.call day, sorted_events.fetch(day, []) %>
                 <% end %>
 
-                <% user.shifts.each do |shift| %>
+                <% user.shifts.order(:start_time).each do |shift| %>
                   <% if shift.start_time.to_date() == day.to_date() %>
                   <%= link_to admins_shift_path(shift), class: "link" do %>
                     <% if shift.status == "終了" %>
