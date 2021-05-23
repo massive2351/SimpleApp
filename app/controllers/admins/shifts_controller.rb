@@ -6,18 +6,11 @@ class Admins::ShiftsController < ApplicationController
   def index
     @shifts = Shift.all
     @users = User.all
-
+    @customers = Customer.all
+    @shift = Shift.new
     @sequence = 1.step
-
-    @shift = Shift.new
-    @customers = Customer.all
   end
 
-  def new
-    @shift = Shift.new
-    @users =  User.all
-    @customers = Customer.all
-  end
 
   def create
     params[:shift][:status] = params[:shift][:status].to_i

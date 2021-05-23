@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   namespace :admins do
     root :to => 'shifts#index'
-    resources :shifts, only: [:index, :new, :create, :edit, :update, :show]
+    resources :shifts, only: [:index,:create, :edit, :update, :show]
     resources :users, only: [:index, :edit, :update, :show]do
       collection do
         get 'search'
