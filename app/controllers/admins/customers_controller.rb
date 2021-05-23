@@ -42,6 +42,8 @@ class Admins::CustomersController < ApplicationController
   end
 
   def search
+    #名前検索
+    
     if params[:last_name].present?
       @customers = Customer.get_by_last_name params[:last_name]
     else
