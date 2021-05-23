@@ -1,5 +1,6 @@
  <table class="table table-hover">
    <thead>
+     <th>作成日</th>
      <th>タイトル</th>
      <th>本文</th>
      <th></th>
@@ -7,6 +8,7 @@
    </thead>
    <% informations.each do |information| %>
    <tbody>
+     <td><%= information.created_at.to_date %></td>
      <td><%= information.title %></td>
      <td><%= information.body %></td>
      <td><%= link_to "編集", edit_admins_information_path(information), class: "btn btn-outline-secondary" %></td>

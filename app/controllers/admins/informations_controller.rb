@@ -20,7 +20,7 @@ class Admins::InformationsController < ApplicationController
 
   def index
     @information = Information.new
-    @informations = Information.all
+    @informations = Information.all.order("created_at DESC")
   end
 
   def edit

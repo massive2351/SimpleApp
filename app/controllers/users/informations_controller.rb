@@ -3,7 +3,7 @@ class Users::InformationsController < ApplicationController
   layout 'users'
   
   def index
-    #最新の順番
+    #IDの大きい順番
     @informations = Information.all.order("created_at DESC")
   end
   
