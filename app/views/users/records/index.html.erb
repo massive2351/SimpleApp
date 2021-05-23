@@ -10,7 +10,7 @@
          <div class="card mt-2">
           <%= attachment_image_tag record.shift.customer, :image, :fill, 150, 150, fallback: "no_image.jpg", class: "card-img-top" %>
            <div class="card-body text-center">
-             <h4 class="card-title"><%= record.shift.start_time.hour %>：<%= record.shift.start_time.min %>〜<%= record.shift.end_time.hour %>：<%= record.shift.end_time.min %></h4>
+             <h4 class="card-title"><%= record.shift.start_time.strftime("%H:%M") %>〜<%= record.shift.end_time.strftime("%H:%M") %></h4>
              <h6 class="card-subtitle"><%= record.shift.customer.last_name %> <%= record.shift.customer.first_name %></h6>
              <p class="card-text"><%= record.shift.type %>を<%= ((record.shift.end_time-record.shift.start_time)/60).floor %>分しました。</p>
            </div>
