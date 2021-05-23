@@ -24,12 +24,13 @@ class Record < ApplicationRecord
    bath_care_before_type_cast
   end
 
-
   before_save do
     self.excretion_care.gsub!(/[\[\]\"]/, "") if attribute_present?("excretion_care")
     self.move_care.gsub!(/[\[\]\"]/, "") if attribute_present?("move_care")
     self.clean_care.gsub!(/[\[\]\"]/, "") if attribute_present?("clean_care")
   end
   
+
+
 
 end

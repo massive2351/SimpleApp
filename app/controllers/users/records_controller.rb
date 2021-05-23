@@ -6,13 +6,14 @@ class Users::RecordsController < ApplicationController
   def new
     @record = Record.new
     @shift = Shift.find(params[:format])
-    @min = (@shift.end_time-@shift.start_time)/60
+    @min = @shift.work_time
   end
 
   def create
     params[:record][:face] = params[:record][:face].to_i
     params[:record][:sewat] = params[:record][:sewat].to_i
     params[:record][:bath_care] = params[:record][:bath_care].to_i
+    
     @record = Record.new(record_params)
     if @record.save!
       flash[:notice] = "サービスを追加しました"
@@ -30,12 +31,12 @@ class Users::RecordsController < ApplicationController
 
   def show
     @shift = @record.shift
-    @min = (@shift.end_time-@shift.start_time)/60
+    @min = @shift.work_time
   end
 
   def edit
     @shift = @record.shift
-    @min = (@shift.end_time-@shift.start_time)/60
+    @min = @shift.work_time
   end
 
   def update

@@ -4,7 +4,7 @@ class Shift < ApplicationRecord
   has_one :record, dependent: :destroy
 
   self.inheritance_column = :_type_disabled
-  
+
   validates :user_id, presence: true
   validates :customer_id, presence: true
   validates :start_time, presence: true
@@ -32,13 +32,17 @@ class Shift < ApplicationRecord
     調理: 9,
     掃除: 10,
   }
-  
+
    enum status:{
     準備中: 0,
     開始: 1,
     終了: 2,
   }
   
+  #スタッフの働いた時間、selfは省略
+  def work_time
+    (end_time-start_time)/60
+  end
   
 
 end

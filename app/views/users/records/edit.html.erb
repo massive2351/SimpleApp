@@ -35,7 +35,7 @@
     <table class="table table-hover">
      <th class="bg-light">時間</th>
      <td>
-      <%= @record.shift.start_time.strftime("%H:%M") %>〜<%= @record.shift.strftime("%H:%M") %>
+      <%= @record.shift.start_time.strftime("%H:%M") %>〜<%= @record.shift.end_time.strftime("%H:%M") %>
      </td>
     </table>
    </div>

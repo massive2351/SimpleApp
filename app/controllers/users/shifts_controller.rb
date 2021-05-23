@@ -1,17 +1,20 @@
 class Users::ShiftsController < ApplicationController
   before_action :authenticate_user!
-   before_action :find_shift, only: [:show, :update]
+  before_action :find_shift, only: [:show, :update]
   layout 'users'
 
   def top
     @shifts = Shift.all
-    shift_todays = Shift.where("DATE(start_time) = '#{Date.today}'")
+    shift_todays = @shifts.where("DATE(start_time) = '#{Date.today}'")
     @shift_todays = shift_todays.order(:start_time)
+    
     @sequence = 1.step
     @users = User.all
 
     @informations = Information.order('created_at DESC')
     @informations_top = @informations.first(3)
+    
+    @hello = @informations_top
   end
 
   def index
@@ -35,9 +38,6 @@ class Users::ShiftsController < ApplicationController
     end
   end
 
-  def search
-
-  end
 
   private
   
