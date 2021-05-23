@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= include_gon %>
@@ -51,6 +52,6 @@
       </nav>
     </header>
     <%= yield %>
-    <footer class="footer h4 text-center" style="height: 80px; line-height: 80px;">Simple</footer>
+    <footer><p>©Simple</p></footer>
   </body>
 </html>
