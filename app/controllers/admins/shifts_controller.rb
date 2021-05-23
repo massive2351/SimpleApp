@@ -14,17 +14,16 @@ class Admins::ShiftsController < ApplicationController
 
   def create
     params[:shift][:status] = params[:shift][:status].to_i
+    
     @shift = Shift.new(shift_params)
-    @shifts = Shift.order(:start_time)
-
     @users = User.all
 
     if @shift.user_id == ""
       @shift.user_id = User.find(params[:shift][:user_id])
     end
 
-    if @shift.customer_id== ""
-       @shift.customer_ = Customer.find(params[:shift][:customer_id])
+    if @shift.customer_id == ""
+       @shift.customer_id = Customer.find(params[:shift][:customer_id])
     end
 
     #新規投稿の非同期
