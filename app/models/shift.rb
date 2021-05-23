@@ -39,10 +39,17 @@ class Shift < ApplicationRecord
     終了: 2,
   }
   
-  #スタッフの働いた時間、selfは省略
+  #スタッフの働いた時間、selfは省略（インスタンスメソッド）
   def work_time
     (end_time-start_time)/60
   end
   
+  #複数のデータを扱うメソッド（クラスメソッド）なのでselfが必要。railsのルール上必要。
+  #shiftの本日のデータから始まりの時間順に並び替えている
+  def self.shift_today
+    shift_todays = where("DATE(start_time) = '#{Date.today}'")
+    shift_todays.order(:start_time)
+  end
+
 
 end

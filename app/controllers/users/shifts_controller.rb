@@ -4,29 +4,24 @@ class Users::ShiftsController < ApplicationController
   layout 'users'
 
   def top
+    #simple_calenderで使用
     @shifts = Shift.all
-    shift_todays = @shifts.where("DATE(start_time) = '#{Date.today}'")
-    @shift_todays = shift_todays.order(:start_time)
-    
+    #モデルに定義
+    @shift_todays = @shifts.shift_today
+    #何個か数えてる
     @sequence = 1.step
-    @users = User.all
 
     @informations = Information.order('created_at DESC')
     @informations_top = @informations.first(3)
-    
-    @hello = @informations_top
   end
 
   def index
     @shifts = current_user.shifts
-    shift_today = @shifts.where("DATE(start_time) = '#{Date.today}'")
-    @shift_todays = shift_today.order(:start_time)
-    @users = User.all
+    @shift_todays = @shifts.shift_today
     @sequence = 1.step
   end
 
   def show
-    @shifts = Shift.all
   end
 
   def update
