@@ -16,6 +16,7 @@ class Users::CustomersController < ApplicationController
   end
   
   def search
+    #名前検索
     if params[:last_name].present?
       @customers = Customer.get_by_last_name params[:last_name]
     else
@@ -25,7 +26,6 @@ class Users::CustomersController < ApplicationController
   end
   
   private
-  
   def find_customer
     @customer = Customer.find(params[:id])
   end
