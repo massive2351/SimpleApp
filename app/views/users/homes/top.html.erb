@@ -8,9 +8,10 @@
         <i class="fas fa-user-tie size mt-3"></i>
         <div class="card-body">
           <h5 class="card-title">スタッフ</h5>
-          <%= link_to 'Go', new_user_session_path, class: "btn btn-info" %>
+          <%= link_to 'Go', new_user_session_path, class: "btn btn-info" %><br>
         </div>
       </div>
+      <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "btn btn-light mt-3" %>
     </div>
     <div class="col-md-6">
       <div class="card">
@@ -20,6 +21,7 @@
           <%= link_to 'Go', new_admin_session_path, class: "btn btn-info" %>
         </div>
       </div>
+      <%= link_to 'ゲストログイン（閲覧用）', admins_guest_sign_in_path, method: :post, class: "btn btn-light mt-3" %>
     </div>
   </div>
 </div>
