@@ -27,14 +27,14 @@
         <th class="table-light">郵便番号</th>
         <td>
           <%= f.label :住所, "郵便番号(ハイフン不要)" %>
-          <%= f.text_field :postal_code, autofocus: true, placeholder: "例)5560002", class: "form-control bootstrap-date-only-width #{"is-invalid" if resource.errors.include?(:postal_code)}" %><%= render 'shared/errors', obj: resource, column: :postal_code %>
+          <%= f.text_field :postal_code, autofocus: true, placeholder: "例)58100", class: "form-control bootstrap-date-only-width #{"is-invalid" if resource.errors.include?(:postal_code)}" %><%= render 'shared/errors', obj: resource, column: :postal_code %>
         </td>
       </tr>
       <tr>
         <th class="table-light">住所</th>
         <td>
           <%= f.label :address, "住所(部屋番号まで)" %>
-          <%= f.text_field :address, autofocus: true, placeholder: "例)大阪府大阪市浪速区恵美須東１丁目１８−６", class: "form-control #{"is-invalid" if resource.errors.include?(:address)}" %><%= render 'shared/errors', obj: resource, column: :address %>
+          <%= f.text_field :address, autofocus: true, placeholder: "例)大阪府八尾市安中町5-12", class: "form-control #{"is-invalid" if resource.errors.include?(:address)}" %><%= render 'shared/errors', obj: resource, column: :address %>
         </td>
 
       </tr>

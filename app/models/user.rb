@@ -5,6 +5,22 @@ class User < ApplicationRecord
   scope :get_by_last_name, ->(last_name) {
     where("last_name like ?", "%#{last_name}%")
   }
+  
+  def self.guest
+    find_or_create_by!(email: 'staff@gmail.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.password_confirmation = user.password
+      user.last_name = "山田" 
+      user.first_name = "太郎" 
+      user.last_name_kana = "ヤマダ" 
+      user.first_name_kana = "タロウ" 
+      user.postal_code = 5810085 
+      user.address = "大阪府八尾市安中町5-12" 
+      user.telephone_number = "00000000000" 
+    end
+    
+  end
+ 
 
   attachment :image
   
@@ -22,4 +38,5 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
 end
