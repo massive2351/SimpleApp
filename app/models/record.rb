@@ -3,7 +3,6 @@ class Record < ApplicationRecord
   belongs_to :user, optional: true
 
   enum face:{
-    "": 0,
     良: 1,
     不良: 2,
   }
@@ -29,11 +28,11 @@ class Record < ApplicationRecord
     self.move_care.gsub!(/[\[\]\"]/, "") if attribute_present?("move_care")
     self.clean_care.gsub!(/[\[\]\"]/, "") if attribute_present?("clean_care")
   end
-  
+
   #recordの本日のデータを取得
   def self.record_today
     where("created_at >= ?", Date.today)
   end
-  
+
 
 end

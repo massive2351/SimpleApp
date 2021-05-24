@@ -18,7 +18,7 @@ class Users::RecordsController < ApplicationController
       flash[:notice] = "サービスを追加しました"
       redirect_to records_path
     else
-      render :index
+      render :new
     end
   end
 
@@ -46,9 +46,9 @@ class Users::RecordsController < ApplicationController
 
     if @record.update(record_params)
       flash[:notice] = "サービスを更新しました"
-      redirect_to records_path
+      redirect_to record_path(@record)
     else
-      render :index
+      render :edit
     end
 
   end
