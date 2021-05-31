@@ -3,6 +3,7 @@ class Record < ApplicationRecord
   belongs_to :user, optional: true
 
   enum face:{
+    "": 0,
     良: 1,
     不良: 2,
   }
